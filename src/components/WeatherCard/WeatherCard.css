@@ -1,37 +1,28 @@
+.weather {
+  margin: 28px 40px 40px 40px;
+}
+
 .weather__container {
   display: flex;
-  align-items: center;
-  max-width: 1360px;
-  height: 80px;
   border-radius: 12px;
-  background: #00a3ff;
-  margin: 0 40px 40px 40px;
+  width: 1360px;
+  height: 80px;
+  background-color: #00a3ff;
   position: relative;
-  z-index: 1;
 }
 
 .weather__temp {
   color: #fff;
-  margin-left: 16px;
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
+  align-self: center;
+  margin-left: 16px;
 }
 
-.weather__cloud {
+.weather__image {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 3;
-  border-radius: 0 0 12px 0;
-}
-
-.weather__sun {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  border-radius: 12px;
+  width: 100%;
 }
