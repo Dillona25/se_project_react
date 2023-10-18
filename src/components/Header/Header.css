@@ -1,3 +1,41 @@
 .header {
-  background-color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1360px;
+  height: 40px;
+  margin: 32px 40px 28px;
+}
+
+.header__info {
+  display: flex;
+  gap: 24px;
+}
+
+.header__logo {
+  width: 89px;
+}
+
+.header__info_date {
+  width: 160px;
+}
+
+.header__info_user {
+  display: flex;
+}
+
+.header__button {
+  margin-right: 20px;
+  border: none;
+  background: transparent;
+}
+
+.header__name {
+  margin-right: 12px;
+}
+
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  align-self: center;
 }
