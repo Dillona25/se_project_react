@@ -7,7 +7,6 @@
   border-radius: 12px;
   width: 1360px;
   height: 80px;
-  background-color: #00a3ff;
   position: relative;
 }
 
@@ -20,6 +19,7 @@
   line-height: 40px;
   align-self: center;
   margin-left: 16px;
+  z-index: 1;
 }
 
 .weather__image {
