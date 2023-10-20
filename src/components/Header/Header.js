@@ -7,7 +7,7 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-const Header = () => {
+const Header = ({ onCreateModal }) => {
   return (
     <header className="header">
       <div className="header__info">
@@ -15,7 +15,9 @@ const Header = () => {
         <p className="header__info_date">{currentDate}, New York</p>
       </div>
       <div className="header__info_user">
-        <button className="header__button">+ Add Clothes</button>
+        <button onClick={onCreateModal} className="header__button">
+          + Add Clothes
+        </button>
         <p className="header__name">Terrence Tegegne</p>
         <img
           className="header__avatar"
