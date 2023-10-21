@@ -1,5 +1,3 @@
-import ItemCard from "../ItemCards/ItemCards.css";
-
 const ItemCard = ({ items, onSelectCard }) => {
   return (
     <div className="cards__container">
