@@ -1,0 +1,58 @@
+.modal__preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  z-index: 5;
+}
+
+.modal__preview_container {
+  position: relative;
+  background-color: #fff;
+  width: 496px;
+  border-radius: 20px;
+}
+
+.modal__preview_close {
+  background-image: url(../../images/Close.svg);
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+}
+
+.modal__preview_image {
+  max-width: 496px;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal__preview_title {
+  color: #000;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 20px 0 12px 32px;
+}
+
+.modal__preview_type {
+  color: #000;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0 0 32px 32px;
+}

@@ -1,4 +1,4 @@
-const ItemCard = ({ items }) => {
+const ItemCard = ({ items, onCreateModal }) => {
   return (
     <div className="cards__container">
       <div className="cards__item_container">
@@ -9,6 +9,7 @@ const ItemCard = ({ items }) => {
           className="cards__image"
           alt="clothing peice"
           src={items.link}
+          onClick={onCreateModal}
         ></img>
       </div>
     </div>
