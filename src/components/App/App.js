@@ -24,63 +24,28 @@ function App() {
     setActiveModal("");
   };
 
-  const handleSelectCard = (card) => {
+  const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   };
 
+  console.log(selectedCard);
+
   return (
     <div className="App">
-      <Header onCreateModal={handleCreateModal} />
-      <main weatherTemp={weatherTemp} />
+      <Header
+        onCreateModal={handleCreateModal}
+        onSelectCard={handleSelectedCard}
+      />
+      <Main weatherTemp={weatherTemp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
-        <ModalWithForm title="New Garmet" onClose={handleCloseModal}>
-          <label className="modal__label">Name</label>
-          <input
-            className="modal__input"
-            type="text"
-            name="name"
-            minLength={1}
-            maxLength={30}
-            required
-            placeholder="Name"
-          ></input>
-          <label className="modal__label">Image</label>
-          <input
-            className="modal__input"
-            type="link"
-            name="image link"
-            minLength={1}
-            maxLength={30}
-            required
-            placeholder="Image URL"
-          ></input>
-          <label className="modal__label">Select the weather type:</label>
-          <div>
-            <div>
-              <input type="radio" id="hot" value="hot"></input>
-              <label id="modal__radio" className="modal__label">
-                Hot
-              </label>
-            </div>
-            <div>
-              <input type="radio" id="warm" value="warm"></input>
-              <label id="modal__radio" className="modal__label">
-                Warm
-              </label>
-            </div>
-            <div>
-              <input type="radio" id="cold" value="cold"></input>
-              <label id="modal__radio" className="modal__label">
-                Cold
-              </label>
-            </div>
-          </div>
-        </ModalWithForm>
+        <ModalWithForm title="New Garmet" onClose={handleCloseModal} />
       )}
       <div>
-        {activeModal === "preview" && <ItemModal selectedCard={selectedCard} />}
+        {activeModal === "preview" && (
+          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+        )}
         ;
       </div>
     </div>

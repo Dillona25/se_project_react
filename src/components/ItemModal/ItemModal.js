@@ -1,10 +1,10 @@
 import "../ItemModal/ItemModal.css";
 
-const ItemModal = ({ selectedCard, onSelectCard }) => {
+const ItemModal = ({ selectedCard, onSelectCard, onClose }) => {
   return (
     <div className="modal__preview">
       <div className="modal__preview_container">
-        <button className="modal__preview_close"></button>
+        <button className="modal__preview_close" onClick={onClose}></button>
         <img
           className="modal__preview_image"
           src={selectedCard.link}

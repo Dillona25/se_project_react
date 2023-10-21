@@ -1,4 +1,4 @@
-const ItemCard = ({ items, onCreateModal }) => {
+const ItemCard = ({ items, onSelectCard }) => {
   return (
     <div className="cards__container">
       <div className="cards__item_container">
@@ -9,7 +9,7 @@ const ItemCard = ({ items, onCreateModal }) => {
           className="cards__image"
           alt="clothing peice"
           src={items.link}
-          onClick={onCreateModal}
+          onClick={() => onSelectCard(items)}
         ></img>
       </div>
     </div>
