@@ -1,6 +1,6 @@
 import "../WeatherCard/WeatherCard.css";
 
-const weatherOptions = [
+export const weatherOptions = [
   {
     url: require("../../images/Day/Sunny.svg").default,
     day: true,
@@ -65,7 +65,6 @@ const weatherOptions = [
     type: "Foggy-night",
   },
 ];
-
 //! Night cards arent working
 
 const WeatherCard = ({ day, type, weatherTemp = "" }) => {
@@ -78,7 +77,7 @@ const WeatherCard = ({ day, type, weatherTemp = "" }) => {
   return (
     <section className="weather">
       <div className="weather__container">
-        <h1 className="weather__temp">{weatherTemp}</h1>
+        <h1 className="weather__temp">{weatherTemp}°F</h1>
         <img
           className="weather__image"
           alt="cloud image"

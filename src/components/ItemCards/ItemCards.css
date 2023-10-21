@@ -14,6 +14,7 @@
   justify-content: center;
   gap: 17px;
   margin: 40px;
+  max-width: 1440px;
 }
 
 .cards__container {

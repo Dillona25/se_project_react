@@ -12,7 +12,7 @@ const Header = ({ onCreateModal }) => {
     <header className="header">
       <div className="header__info">
         <img src={headerLogo} alt="Logo" className="header__logo"></img>
-        <p className="header__info_date">{currentDate}, New York</p>
+        <p className="header__info_date">{currentDate}, Portland, Oregon</p>
       </div>
       <div className="header__info_user">
         <button onClick={onCreateModal} className="header__button">
