@@ -1,18 +1,19 @@
-import "../ItemModal/ItemModal.css";
-
 const ItemModal = ({ selectedCard, onSelectCard, onClose }) => {
   return (
-    <div className="modal__preview">
-      <div className="modal__preview_container">
-        <button className="modal__preview_close" onClick={onClose}></button>
+    <div className={`modal modal__type_preview`}>
+      <div className="modal__container_preview">
+        <button className="modal__close" onClick={onClose}></button>
         <img
-          className="modal__preview_image"
+          className="modal__image"
           src={selectedCard.link}
           onClick={onSelectCard}
+          alt={selectedCard.name}
         ></img>
         <div>
-          <h1 className="modal__preview_title">{selectedCard.name}</h1>
-          <p className="modal__preview_type">Weather: {selectedCard.weather}</p>
+          <h2 className="modal__title_preview">{selectedCard.name}</h2>
+          <p className="modal__description_preview">
+            Weather: {selectedCard.weather}
+          </p>
         </div>
       </div>
     </div>

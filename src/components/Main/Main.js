@@ -1,4 +1,5 @@
 import { defaultClothingItems } from "../../utils/constants";
+import { weatherOptions } from "../../utils/constants";
 import "../Main/Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCards/ItemCards";
@@ -17,9 +18,9 @@ function Main({ weatherTemp, onSelectCard }) {
 
   console.log(weatherType);
 
-  const filteredCards = defaultClothingItems.filter((items) => {
-    console.log(items);
-    return items.weather.toLowerCase() === weatherType;
+  const filteredCards = defaultClothingItems.filter((item) => {
+    console.log(item);
+    return item.weather.toLowerCase() === weatherType;
   });
 
   return (
@@ -30,8 +31,14 @@ function Main({ weatherTemp, onSelectCard }) {
           Today is {weatherTemp} You may want to wear:
         </p>
         <div className="cards__items">
-          {filteredCards.map((items) => {
-            return <ItemCard items={items} onSelectCard={onSelectCard} />;
+          {filteredCards.map((item) => {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onSelectCard={onSelectCard}
+              />
+            );
           })}
         </div>
       </section>

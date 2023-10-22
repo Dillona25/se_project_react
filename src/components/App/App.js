@@ -30,11 +30,13 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      const temperature = parseWeather(data);
-      console.log(data);
-      setTemp(temperature);
-    });
+    getForecastWeather()
+      .then((data) => {
+        const temperature = parseWeather(data);
+        console.log(data);
+        setTemp(temperature);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   console.log(temp);
@@ -48,7 +50,51 @@ function App() {
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
-        <ModalWithForm title="New Garmet" onClose={handleCloseModal} />
+        <ModalWithForm title="New Garmet" onClose={handleCloseModal}>
+          <label className="modal__label">Name</label>
+          <input
+            className="modal__input"
+            type="text"
+            name="name"
+            minLength={1}
+            maxLength={30}
+            required
+            placeholder="Name"
+          ></input>
+          <label input className="modal__label">
+            Image
+          </label>
+          <input
+            className="modal__input"
+            type="link"
+            name="image link"
+            minLength={1}
+            maxLength={30}
+            required
+            placeholder="Image URL"
+          ></input>
+          <label className="modal__label">Select the weather type:</label>
+          <div>
+            <div>
+              <input type="radio" id="hot" value="hot" name="radio"></input>
+              <label id="modal__radio" className="modal__label">
+                Hot
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="warm" value="warm" name="radio"></input>
+              <label id="modal__radio" className="modal__label">
+                Warm
+              </label>
+            </div>
+            <div>
+              <input type="radio" id="cold" value="cold" name="radio"></input>
+              <label id="modal__radio" className="modal__label">
+                Cold
+              </label>
+            </div>
+          </div>
+        </ModalWithForm>
       )}
       <div>
         {activeModal === "preview" && (
