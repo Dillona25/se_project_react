@@ -36,6 +36,7 @@
   font-weight: 700;
   line-height: 20px;
   text-align: center;
+  margin: 0;
 }
 
 .cards__title_frame {
@@ -46,7 +47,7 @@
   border-radius: 4px;
   background-color: #fff;
   width: fit-content;
-  height: 24px;
+  height: fit-content;
   margin: auto;
   margin-top: 16px;
 }
@@ -55,4 +56,43 @@
   width: 328px;
   height: 328px;
   border-radius: 19px;
+}
+
+@media screen and (max-width: 600px) {
+  .cards {
+    margin: auto;
+    max-width: 340px;
+  }
+
+  .cards__items {
+    gap: 15px;
+  }
+  .cards__items_container {
+    width: 164px;
+    height: 164px;
+  }
+
+  .cards__temp {
+    margin: auto;
+  }
+
+  .cards__container {
+    width: 164px;
+    height: 164px;
+  }
+
+  .cards__title {
+    margin: 0;
+  }
+
+  .cards__image {
+    width: 124px;
+    height: fit-content;
+    margin: 0 19px;
+  }
+
+  .cards__title_frame {
+    width: fit-content;
+    margin-top: 10px;
+  }
 }

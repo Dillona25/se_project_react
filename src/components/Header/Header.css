@@ -50,3 +50,48 @@
   width: 40px;
   align-self: center;
 }
+
+@media screen and (max-width: 900px) {
+  .header__info {
+    font-size: 16px;
+  }
+
+  .header__button {
+    font-size: 16px;
+  }
+
+  .header__name {
+    font-size: 16px;
+  }
+
+  .header__avatar {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    height: 90px;
+  }
+
+  .header__info {
+    flex-direction: column;
+  }
+
+  .header__info_date {
+    margin: 0;
+  }
+
+  .header__name {
+    display: none;
+  }
+
+  .header__button {
+    display: none;
+  }
+
+  .header__avatar {
+    display: none;
+  }
+}
