@@ -73,6 +73,8 @@
 @media screen and (max-width: 600px) {
   .header {
     height: 90px;
+    margin: 16px;
+    width: 345px;
   }
 
   .header__info {

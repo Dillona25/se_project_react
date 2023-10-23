@@ -42,7 +42,7 @@
 @media screen and (max-width: 600px) {
   .weather {
     max-width: 343px;
-    margin: auto;
+    margin: 16px;
   }
 
   .weather__image {
