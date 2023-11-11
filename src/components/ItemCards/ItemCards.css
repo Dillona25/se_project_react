@@ -56,6 +56,7 @@
   width: 328px;
   height: 328px;
   border-radius: 19px;
+  cursor: pointer;
 }
 
 .cards__random {

@@ -10,6 +10,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -39,14 +40,20 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(temp);
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
 
   return (
     <div className="App">
       <Header
         onCreateModal={handleCreateModal}
         onSelectCard={handleSelectedCard}
-      />
+      >
+        <ToggleSwitch value={checked} onChange={handleChange} />
+      </Header>
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
