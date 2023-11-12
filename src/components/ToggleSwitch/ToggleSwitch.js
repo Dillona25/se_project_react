@@ -9,9 +9,10 @@ const ToggleSwitch = () => {
         type="checkbox"
       />
       <label className="toggle__switch_label" htmlFor={`toggle-switch`}>
-        <span className={`toggle__switch_button`} />
-        <div className="toggle__switch_states">
+        <span className="toggle__switch_button">
           <span className="toggle__switch_f">F</span>
+        </span>
+        <div className="toggle__switch_states">
           <span className="toggle__switch_c">C</span>
         </div>
       </label>

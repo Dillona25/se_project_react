@@ -21,7 +21,11 @@
 
 .toggle__switch_label .toggle__switch_button {
   content: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  z-index: 2;
   top: 0px;
   left: 0px;
   width: 28px;
@@ -35,7 +39,7 @@
 .toggle__switch_checkbox:checked
   + .toggle__switch_label
   .toggle__switch_button {
-  left: calc(100% - 2px);
+  left: calc(100%);
   transform: translateX(-100%);
 }
 
@@ -52,12 +56,11 @@
 }
 
 .toggle__switch_f {
-  position: absolute;
-  top: 6px;
-  left: 8px;
+  color: #fff;
+  text-align: center;
 }
 
-.toggle__switch_f {
+.toggle__switch_c {
   position: absolute;
   top: 6px;
   right: 8px;
