@@ -11,12 +11,13 @@ import ItemModal from "../ItemModal/ItemModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTempUnitContext";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
+  const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -42,12 +43,11 @@ function App() {
   }, []);
 
   const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === "F"
-      ? setCurrentTemperatureUnit("C")
-      : setCurrentTemperatureUnit("F");
+    if (currentTemperatureUnit === "C") handleToggleSwitchChange("F");
+    if (currentTemperatureUnit === "F") handleToggleSwitchChange("C");
   };
 
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  console.log(currentTemperatureUnit);
 
   return (
     <div className="App">
@@ -58,7 +58,7 @@ function App() {
           onCreateModal={handleCreateModal}
           onSelectCard={handleSelectedCard}
         >
-          <ToggleSwitch onChange={handleToggleSwitchChange} />
+          <ToggleSwitch />
         </Header>
         <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
         <Footer />

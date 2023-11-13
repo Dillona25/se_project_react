@@ -20,10 +20,7 @@ export const getForecastWeather = () => {
 };
 
 export const parseWeather = (data) => {
-  const weather = { temp: {} };
-  weather.temp.main = Math.ceil(data.main.temp);
-  weather.temp.F = `${Math.round(data.main.temp)}°F`;
-  weather.temp.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
-  weather.temp.weather = data.weather[0].main;
-  return weather;
+  const main = data.main;
+  const temperature = main && main.temp;
+  return Math.ceil(temperature);
 };

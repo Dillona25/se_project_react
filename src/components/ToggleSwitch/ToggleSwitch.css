@@ -1,67 +1,54 @@
-.toggle__switch_checkbox {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-
-.toggle__switch_label {
+.switch {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  width: 56px;
-  height: 28px;
-  background: #fff;
-  color: black;
-  border: solid 2px #7e7e7e;
-  border-radius: 100px;
   position: relative;
-  transition: background-color 0.2s;
+  align-self: center;
 }
 
-.toggle__switch_label .toggle__switch_button {
-  content: "";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 2;
-  top: 0px;
-  left: 0px;
-  width: 28px;
-  height: 28px;
+.switch__box {
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 50px;
+  height: 30px;
+  appearance: none;
+  background-color: #fff;
+}
+
+.switch__slider {
   border-radius: 20px;
-  transition: 0.2s;
-  background: #000;
-  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-}
-
-.toggle__switch_checkbox:checked
-  + .toggle__switch_label
-  .toggle__switch_button {
-  left: calc(100%);
-  transform: translateX(-100%);
-}
-
-.toggle__switch_label:active .toggle__switch_button {
-  width: 60%;
-}
-
-.toggle__switch_states {
-  font-weight: 700;
-  font-style: normal;
-  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-.toggle__switch_f {
+  width: 30px;
+  height: 30px;
+  background-color: #000;
   color: #fff;
   text-align: center;
+  cursor: pointer;
+  position: absolute;
 }
 
-.toggle__switch_c {
+.switch__slider-F {
+  top: 3px;
+  left: 28px;
+}
+
+.switch__slider-C {
+  top: 3px;
+  left: 5px;
+}
+
+.switch__acvtive {
+  color: #fff;
+  font-size: 16px;
+}
+
+.switch__temp-C {
   position: absolute;
-  top: 6px;
-  right: 8px;
+  top: -7px;
+  left: 14px;
+  color: #fff;
+}
+
+.switch__temp-F {
+  position: absolute;
+  top: -7px;
+  left: 38px;
+  color: #fff;
 }
