@@ -5,8 +5,12 @@ import "../Main/Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCards/ItemCards";
 import { useMemo } from "react";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherTemp, onSelectCard }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  console.log(currentTemperatureUnit);
+
   const weatherType = useMemo(() => {
     if (weatherTemp >= 86) {
       return "hot";

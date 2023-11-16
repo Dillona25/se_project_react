@@ -17,6 +17,10 @@
   line-height: 24px;
 }
 
+.header__link {
+  align-self: center;
+}
+
 .header__logo {
   width: 89px;
 }
