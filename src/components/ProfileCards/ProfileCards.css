@@ -1,0 +1,35 @@
+.profile__cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__cards_text {
+  display: flex;
+  gap: 20px;
+}
+
+.profile__cards_title {
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+}
+
+.profile__cards_new {
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+  border: none;
+  opacity: 60%;
+  cursor: pointer;
+}
+
+.profile__cards_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}

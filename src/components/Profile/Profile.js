@@ -1,10 +1,12 @@
 import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
 import ProfileCards from "../ProfileCards/ProfileCards";
+import "../Profile/Profile.css";
 
-const Profile = () => {
+const Profile = ({ onSelectCard }) => {
   return (
-    <div>
-      <div></div>
+    <div className="profile">
+      <ProfileSideBar />
+      <ProfileCards onSelectCard={onSelectCard} />
     </div>
   );
 };

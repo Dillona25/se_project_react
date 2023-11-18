@@ -1,0 +1,18 @@
+.profile__sidebar {
+  display: flex;
+}
+
+.profile__image {
+  height: 56px;
+  width: 56px;
+}
+
+.profile__name {
+  margin-left: 16px;
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-wrap: nowrap;
+}
