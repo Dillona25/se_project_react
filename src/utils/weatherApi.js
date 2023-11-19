@@ -5,7 +5,6 @@ const longitude = -122.6784;
 const APIkey = "feb4c18ca4cffb957bfa4ba9d695abed";
 
 export const processServerResponse = (res) => {
-  console.log(res);
   if (res.ok) {
     return res.json();
   }
@@ -28,6 +27,5 @@ export const parseWeather = (data) => {
       C: Math.round(((temperature - 32) * 5) / 9),
     },
   };
-  console.log(weather);
   return Math.ceil(temperature);
 };

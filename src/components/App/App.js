@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -23,6 +24,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
+  const [cards, setCards] = useState([]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -41,7 +43,6 @@ function App() {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeather(data);
-        console.log(temperature);
         setTemp(temperature);
       })
       .catch((err) => console.log(err));
@@ -52,7 +53,9 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemerpatureUnit("C");
   };
 
-  console.log(currentTemperatureUnit);
+  const onAddItem = ({ name, image, weatherType }) => {
+    setCards([name, image, weatherType, ...cards]);
+  };
 
   return (
     <BrowserRouter>
@@ -70,68 +73,19 @@ function App() {
             <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
           </Route>
           <Route path="/Profile">
-            <Profile onSelectCard={handleSelectedCard} />
+            <Profile
+              onSelectCard={handleSelectedCard}
+              openModal={handleCreateModal}
+            />
           </Route>
           <Footer />
           {activeModal === "create" && (
-            <ModalWithForm title="New Garmet" onClose={handleCloseModal}>
-              <label className="modal__label">Name</label>
-              <input
-                className="modal__input"
-                type="text"
-                name="name"
-                minLength={1}
-                maxLength={30}
-                required
-                placeholder="Name"
-              ></input>
-              <label className="modal__label">Image</label>
-              <input
-                className="modal__input"
-                type="link"
-                name="image link"
-                minLength={1}
-                maxLength={30}
-                required
-                placeholder="Image URL"
-              ></input>
-              <label className="modal__label">Select the weather type:</label>
-              <div>
-                <div>
-                  <label id="modal__radio" className="modal__label">
-                    <input
-                      type="radio"
-                      id="hot"
-                      value="hot"
-                      name="radio"
-                    ></input>
-                    Hot
-                  </label>
-                </div>
-                <div>
-                  <label id="modal__radio" className="modal__label">
-                    <input
-                      type="radio"
-                      id="warm"
-                      value="warm"
-                      name="radio"
-                    ></input>
-                    Warm
-                  </label>
-                </div>
-                <div>
-                  <label id="modal__radio" className="modal__label">
-                    <input
-                      type="radio"
-                      id="cold"
-                      value="cold"
-                      name="radio"
-                    ></input>
-                    Cold
-                  </label>
-                </div>
-              </div>
-            </ModalWithForm>
+            <AddItemModal
+              title="New Garmet"
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "create"}
+              onAddItem={onAddItem}
+            />
           )}
           <div>
             {activeModal === "preview" && (

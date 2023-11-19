@@ -45,9 +45,6 @@ function Main({ weatherTemp, onSelectCard }) {
             );
           })}
         </div>
-        <button type="submit" className="cards__random">
-          Randomize
-        </button>
       </section>
     </main>
   );
