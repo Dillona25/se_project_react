@@ -11,7 +11,6 @@ const ModalWithForm = ({
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClose();
   };
   return (
     <div className={`modal modal__type_${name}`}>

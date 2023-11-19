@@ -18,6 +18,7 @@ import {
   BrowserRouter,
   Route,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { addNewItem } from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -54,7 +55,9 @@ function App() {
   };
 
   const onAddItem = ({ name, image, weatherType }) => {
-    setCards([name, image, weatherType, ...cards]);
+    addNewItem([name, image, weatherType, ...cards]).then((res) => {
+      setCards([res, ...cards]);
+    });
   };
 
   return (
