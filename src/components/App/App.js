@@ -18,7 +18,7 @@ import {
   BrowserRouter,
   Route,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { addNewItem } from "../../utils/api";
+import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -49,15 +49,27 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    getClothingItem()
+      .then((data) => {
+        const items = data.sort(
+          (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+        );
+        setCards(items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemerpatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemerpatureUnit("C");
   };
 
-  const onAddItem = ({ name, image, weatherType }) => {
-    addNewItem([name, image, weatherType, ...cards]).then((res) => {
-      setCards([res, ...cards]);
-    });
+  const onAddItem = (values) => {
+    console.log(values);
+    handleCloseModal();
   };
 
   return (
@@ -73,12 +85,17 @@ function App() {
             <ToggleSwitch />
           </Header>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              cards={cards}
+              onSelectCard={handleSelectedCard}
+            />
           </Route>
           <Route path="/Profile">
             <Profile
               onSelectCard={handleSelectedCard}
               openModal={handleCreateModal}
+              cards={cards}
             />
           </Route>
           <Footer />

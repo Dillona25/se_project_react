@@ -4,8 +4,14 @@ import ItemCard from "../ItemCards/ItemCards";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { defaultClothingItems } from "../../utils/constants";
 
-const ProfileCards = ({ onSelectCard, openModal }) => {
-  const filteredCards = defaultClothingItems;
+const ProfileCards = ({ onSelectCard, openModal, cards }) => {
+  const currentUser = useContext(CurrentUserContext);
+
+  console.log(cards);
+
+  const filteredCards = cards.filter((item) => {
+    return item.owner === currentUser?._id;
+  });
 
   return (
     <div className="profile__cards">
