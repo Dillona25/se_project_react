@@ -3,24 +3,24 @@ import { useState } from "react";
 
 const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [weatherType, setWeatherType] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [weather, setWeather] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.value);
+    setImageUrl(e.target.value);
   };
 
   const handleWeatherChange = (e) => {
-    setWeatherType(e.target.value);
+    setWeather(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, image, weatherType });
+    onAddItem({ name, imageUrl, weather });
   };
 
   return (
@@ -47,7 +47,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         className="modal__input"
         type="link"
         name="image link"
-        value={image}
+        value={imageUrl}
         onChange={handleImageChange}
         minLength={1}
         maxLength={30}

@@ -67,9 +67,30 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemerpatureUnit("C");
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
-    handleCloseModal();
+  const onAddItem = ({ name, imageUrl, weather }) => {
+    addNewItem({ name, imageUrl, weather }).then((res) => {
+      setCards([res, ...cards]);
+      handleCloseModal();
+      getClothingItem()
+        .then((data) => {
+          const items = data.sort(
+            (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+          );
+          setCards(items);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
+
+  const handleDeleteCard = () => {
+    deleteItem(selectedCard._id)
+      .then(() => {
+        setCards(cards.filter((item) => item._id !== selectedCard._id));
+        handleCloseModal();
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -112,6 +133,7 @@ function App() {
               <ItemModal
                 selectedCard={selectedCard}
                 onClose={handleCloseModal}
+                handleDeleteCard={handleDeleteCard}
               />
             )}
           </div>
