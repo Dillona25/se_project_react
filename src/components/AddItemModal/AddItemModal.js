@@ -11,10 +11,12 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   };
 
   const handleImageChange = (e) => {
+    console.log(e.target.value);
     setImageUrl(e.target.value);
   };
 
   const handleWeatherChange = (e) => {
+    console.log(e.target.value);
     setWeather(e.target.value);
   };
 
@@ -50,7 +52,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         value={imageUrl}
         onChange={handleImageChange}
         minLength={1}
-        maxLength={30}
         required
         placeholder="Image URL"
       ></input>
