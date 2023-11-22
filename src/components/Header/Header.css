@@ -51,6 +51,11 @@
   line-height: normal;
 }
 
+.header__name_link {
+  text-decoration: none;
+  color: black;
+}
+
 .header__avatar {
   height: 40px;
   width: 40px;

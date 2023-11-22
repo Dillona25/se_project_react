@@ -1,4 +1,4 @@
-import "../ItemCards/ItemCards.css";
+import "../ItemCard/ItemCard.css";
 
 const ItemCard = ({ item, onSelectCard }) => {
   return (

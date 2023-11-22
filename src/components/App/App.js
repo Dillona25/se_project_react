@@ -1,7 +1,7 @@
 import logo from "../../logo.svg";
 import "./App.css";
 import "../Header/Header.css";
-import "../ItemCards/ItemCards.css";
+import "../ItemCard/ItemCard.css";
 import "../Footer/Footer.css";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
@@ -63,25 +63,22 @@ function App() {
   }, []);
 
   const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "C") setCurrentTemerpatureUnit("F");
-    if (currentTemperatureUnit === "F") setCurrentTemerpatureUnit("C");
+    if (currentTemperatureUnit === "C") {
+      setCurrentTemerpatureUnit("F");
+    } else {
+      setCurrentTemerpatureUnit("C");
+    }
   };
 
   const onAddItem = ({ name, imageUrl, weather }) => {
-    addNewItem({ name, imageUrl, weather }).then((res) => {
-      setCards([res, ...cards]);
-      handleCloseModal();
-      getClothingItem()
-        .then((data) => {
-          const items = data.sort(
-            (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
-          );
-          setCards(items);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
+    addNewItem({ name, imageUrl, weather })
+      .then((res) => {
+        setCards([res, ...cards]);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleDeleteCard = () => {

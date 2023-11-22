@@ -5,11 +5,11 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 
 const WeatherCard = ({ day, type, weatherTemp = "" }) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const imageSrc = weatherOptions.find((i) => {
-    return i.day === day && i.type === type;
+  const weatherOption = weatherOptions.find((item) => {
+    return item.day === day && item.type === type;
   });
 
-  const imageSrcUrl = imageSrc.url || "";
+  const imageSrcUrl = weatherOption.url || "";
 
   return (
     <section className="weather">

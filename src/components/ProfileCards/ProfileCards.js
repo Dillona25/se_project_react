@@ -1,6 +1,6 @@
 import "../ProfileCards/ProfileCards.css";
 import { useContext } from "react";
-import ItemCard from "../ItemCards/ItemCards";
+import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { defaultClothingItems } from "../../utils/constants";
 
