@@ -1,4 +1,4 @@
-import ServerRes from "./ServerRes";
+import processServerResponse from "./processServerResponse";
 
 const baseUrl = "http://localhost:3001";
 
@@ -8,7 +8,7 @@ export const getClothingItem = () => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => ServerRes(res));
+  }).then((res) => processServerResponse(res));
 };
 
 export const addNewItem = ({ name, imageUrl, weather }) => {
@@ -22,7 +22,7 @@ export const addNewItem = ({ name, imageUrl, weather }) => {
       imageUrl,
       weather,
     }),
-  }).then((res) => ServerRes(res));
+  }).then((res) => processServerResponse(res));
 };
 
 export const deleteItem = (id) => {
@@ -31,5 +31,5 @@ export const deleteItem = (id) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((res) => ServerRes(res));
+  }).then((res) => processServerResponse(res));
 };
