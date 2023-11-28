@@ -14,10 +14,7 @@ import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import {
-  BrowserRouter,
-  Route,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { HashRouter, Route } from "react-router-dom/cjs/react-router-dom.min";
 import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
 
 function App() {
@@ -91,7 +88,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -136,7 +133,7 @@ function App() {
           </div>
         </CurrentTemperatureUnitContext.Provider>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
