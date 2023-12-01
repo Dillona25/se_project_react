@@ -1,6 +1,7 @@
 import processServerResponse from "./processServerResponse";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  "https://my-json-server.typicode.com/dillona25/se_project_react";
 
 export const getClothingItem = () => {
   return fetch(`${baseUrl}/items`, {
