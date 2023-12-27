@@ -14,9 +14,15 @@
   line-height: 20px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1020px) {
   .footer {
     width: 345px;
-    margin: 85px 16px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    margin: auto;
   }
 }

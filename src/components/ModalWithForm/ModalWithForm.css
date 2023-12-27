@@ -141,3 +141,25 @@
   line-height: 24px;
   margin: 0 0 32px 32px;
 }
+
+@media screen and (max-width: 600px) {
+  .modal__container_preview {
+    width: 350px;
+  }
+
+  .modal__container {
+    width: 300px;
+  }
+
+  .modal__image {
+    width: 300px;
+  }
+
+  .modal__input {
+    width: 300px;
+  }
+
+  .modal__form {
+    width: 350px;
+  }
+}

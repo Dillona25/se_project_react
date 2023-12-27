@@ -26,6 +26,7 @@ const Header = ({ onCreateModal }) => {
         <Link className="header__name_link" to="/Profile">
           <p className="header__name">Terrence Tegegne</p>
         </Link>
+        <button className="header__menu"></button>
         <Link className="header__link" to="/Profile">
           <img
             className="header__avatar"
