@@ -52,3 +52,9 @@
   left: 38px;
   color: #fff;
 }
+
+@media screen and (max-width: 1020px) {
+  .switch {
+    display: none;
+  }
+}
