@@ -10,6 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -30,12 +31,26 @@ function App() {
     setActiveModal("create");
   };
 
+  const handleRegisterModal = () => {
+    setSigninModal("create");
+    handleCloseLoginModal();
+  };
+
   const handleLoginModal = () => {
     setLoginModal("create");
+    handleCloseRegisterModal();
   };
 
   const handleCloseModal = () => {
     setActiveModal("");
+  };
+
+  const handleCloseRegisterModal = () => {
+    setSigninModal("");
+  };
+
+  const handleCloseLoginModal = () => {
+    setLoginModal("");
   };
 
   const handleSelectedCard = (card) => {
@@ -102,6 +117,7 @@ function App() {
           <Header
             onCreateModal={handleCreateModal}
             handleLoginModal={handleLoginModal}
+            handleRegisterModal={handleRegisterModal}
             onSelectCard={handleSelectedCard}
           >
             <ToggleSwitch />
@@ -122,8 +138,21 @@ function App() {
           </Route>
           <Footer />
 
+          {signinModal === "create" && (
+            <RegisterModal
+              isOpen={activeModal === "create"}
+              handleCloseRegisterModal={handleCloseRegisterModal}
+              handleLoginModal={handleLoginModal}
+              handleCreateModal={handleCreateModal}
+            />
+          )}
+
           {loginModal === "create" && (
-            <LoginModal isOpen={activeModal === "create"} />
+            <LoginModal
+              isOpen={activeModal === "create"}
+              handleCloseLoginModal={handleCloseLoginModal}
+              handleRegisterModal={handleRegisterModal}
+            />
           )}
 
           {activeModal === "create" && (

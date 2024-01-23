@@ -116,8 +116,10 @@
 
 .modal__button-alt {
   border: none;
+  position: absolute;
+  left: 108px;
+  bottom: 36px;
   background-color: transparent;
-  align-self: center;
   opacity: 50%;
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-size: 16px;
