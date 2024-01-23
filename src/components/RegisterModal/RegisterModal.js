@@ -1,21 +1,42 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const RegisterModal = ({
   handleCloseRegisterModal,
   handleLoginModal,
-  handleSignUp,
+  onSubmit,
+  isOpen,
 }) => {
-  const [values, setValues] = useState({});
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
+
+  const [password, setPassword] = useState("");
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const [name, setName] = useState("");
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const [avatar, setAvatar] = useState("");
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
+  };
+
+  useEffect(() => {
+    setEmail("");
+    setPassword("");
+    setName("");
+    setAvatar("");
+  }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignUp(values);
+    onSubmit({ email, password, name, avatar });
   };
 
   return (
@@ -24,7 +45,7 @@ const RegisterModal = ({
       onClose={handleCloseRegisterModal}
       buttonText={"Next"}
       buttonTextAlt={"or Log In"}
-      handleSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <label className="modal__label">Email*</label>
       <input
@@ -36,8 +57,8 @@ const RegisterModal = ({
         id="email"
         minLength="1"
         maxLength="30"
-        value={values.email}
-        onChange={handleInputChange}
+        value={email}
+        onChange={handleEmailChange}
       ></input>
       <label className="modal__label">Password*</label>
       <input
@@ -49,8 +70,8 @@ const RegisterModal = ({
         id="password"
         minLength="8"
         maxLength="30"
-        value={values.password}
-        onChange={handleInputChange}
+        value={password}
+        onChange={handlePasswordChange}
       ></input>
       <label className="modal__label">Name*</label>
       <input
@@ -62,8 +83,8 @@ const RegisterModal = ({
         id="name"
         minLength="2"
         maxLength="30"
-        value={values.name}
-        onChange={handleInputChange}
+        value={name}
+        onChange={handleNameChange}
       ></input>
       <label className="modal__label">Avatar URL*</label>
       <input
@@ -73,8 +94,8 @@ const RegisterModal = ({
         required
         name="avatar"
         id="avatar"
-        value={values.avatar}
-        onChange={handleInputChange}
+        value={avatar}
+        onChange={handleAvatarChange}
       ></input>
       <button
         className="modal__button-alt"

@@ -20,6 +20,7 @@ import { HashRouter, Route } from "react-router-dom/cjs/react-router-dom.min";
 import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { registration } from "../../utils/auth";
+import * as auth from "../../utils/auth";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -31,6 +32,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -118,19 +120,46 @@ function App() {
         setCards(cards.filter((item) => item._id !== selectedCard._id));
         handleCloseModal();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
-  const handleSignUp = (data) => {
-    const { email, password } = data;
-    registration(data)
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    console.log({ jwt });
+    if (jwt) {
+      localStorage.setItem("jwt", jwt);
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          setIsLoggedIn(true);
+          setCurrentUser({ currentUser: res.data });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, []);
+
+  function handleRegistration({ email, password, name, avatar }) {
+    auth
+      .registration(email, password, name, avatar)
       .then((res) => {
-        handleCloseModal();
+        if (res) {
+          localStorage
+            .setItem("jwt", res.token)
+            .then((data) => {
+              setCurrentUser(data);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+        handleCloseRegisterModal();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
-  };
+  }
 
   return (
     <HashRouter>
@@ -174,7 +203,7 @@ function App() {
               handleCloseRegisterModal={handleCloseRegisterModal}
               handleLoginModal={handleLoginModal}
               handleCreateModal={handleCreateModal}
-              handleSignUp={handleSignUp}
+              onSubmit={handleRegistration}
             />
           )}
 
