@@ -18,6 +18,8 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { HashRouter, Route } from "react-router-dom/cjs/react-router-dom.min";
 import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { registration } from "../../utils/auth";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -28,6 +30,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
   const [cards, setCards] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -118,6 +121,17 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const handleSignUp = (data) => {
+    const { email, password } = data;
+    registration(data)
+      .then((res) => {
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <HashRouter>
       <div className="App">
@@ -129,6 +143,7 @@ function App() {
             handleLoginModal={handleLoginModal}
             handleRegisterModal={handleRegisterModal}
             onSelectCard={handleSelectedCard}
+            isLoggedIn={isLoggedIn}
           >
             <ToggleSwitch />
           </Header>
@@ -139,14 +154,14 @@ function App() {
               onSelectCard={handleSelectedCard}
             />
           </Route>
-          <Route path="/Profile">
+          <ProtectedRoute isLoggedIn={isLoggedIn} path="/Profile">
             <Profile
               onSelectCard={handleSelectedCard}
               openModal={handleCreateModal}
               handleEditProfileModal={handleEditProfileModal}
               cards={cards}
             />
-          </Route>
+          </ProtectedRoute>
           <Footer />
           {editProfileModal === "create" && (
             <EditProfileModal
@@ -159,6 +174,7 @@ function App() {
               handleCloseRegisterModal={handleCloseRegisterModal}
               handleLoginModal={handleLoginModal}
               handleCreateModal={handleCreateModal}
+              handleSignUp={handleSignUp}
             />
           )}
 

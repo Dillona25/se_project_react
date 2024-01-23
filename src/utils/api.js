@@ -1,6 +1,6 @@
 import processServerResponse from "./processServerResponse";
 
-const baseUrl = "http://localhost:3001";
+export const baseUrl = "http://localhost:3001";
 
 export const getClothingItem = () => {
   return fetch(`${baseUrl}/items`, {

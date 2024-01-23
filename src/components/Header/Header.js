@@ -9,7 +9,12 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-const Header = ({ onCreateModal, handleLoginModal, handleRegisterModal }) => {
+const Header = ({
+  onCreateModal,
+  handleLoginModal,
+  handleRegisterModal,
+  isLoggedIn,
+}) => {
   return (
     <header className="header">
       <div className="header__info">
@@ -20,26 +25,33 @@ const Header = ({ onCreateModal, handleLoginModal, handleRegisterModal }) => {
       </div>
       <div className="header__info_user">
         <ToggleSwitch />
-        {/* <button className="header__buttons" onClick={handleRegisterModal}>
-          Sign Up
-        </button>
-        <button className="header__buttons" onClick={handleLoginModal}>
-          Login
-        </button> */}
-        <button onClick={onCreateModal} className="header__button">
-          + Add Clothes
-        </button>
-        <Link className="header__name_link" to="/Profile">
-          <p className="header__name">Terrence Tegegne</p>
-        </Link>
-        <button className="header__menu"></button>
-        <Link className="header__link" to="/Profile">
-          <img
-            className="header__avatar"
-            alt="Users Avatar"
-            src={headerAvatar}
-          ></img>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <button onClick={onCreateModal} className="header__button">
+              + Add Clothes
+            </button>
+            <Link className="header__name_link" to="/Profile">
+              <p className="header__name">Terrence Tegegne</p>
+            </Link>
+            <button className="header__menu"></button>
+            <Link className="header__link" to="/Profile">
+              <img
+                className="header__avatar"
+                alt="Users Avatar"
+                src={headerAvatar}
+              ></img>
+            </Link>
+          </>
+        ) : (
+          <>
+            <button className="header__buttons" onClick={handleRegisterModal}>
+              Sign Up
+            </button>
+            <button className="header__buttons" onClick={handleLoginModal}>
+              Login
+            </button>
+          </>
+        )}
       </div>
     </header>
   );
