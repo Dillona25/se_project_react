@@ -2,10 +2,15 @@ import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
 import ProfileCards from "../ProfileCards/ProfileCards";
 import "../Profile/Profile.css";
 
-const Profile = ({ onSelectCard, openModal, cards }) => {
+const Profile = ({
+  onSelectCard,
+  openModal,
+  cards,
+  handleEditProfileModal,
+}) => {
   return (
     <div className="profile">
-      <ProfileSideBar />
+      <ProfileSideBar handleEditProfileModal={handleEditProfileModal} />
       <ProfileCards
         cards={cards}
         openModal={openModal}

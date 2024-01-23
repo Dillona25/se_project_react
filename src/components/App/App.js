@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -22,6 +23,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [loginModal, setLoginModal] = useState("");
   const [signinModal, setSigninModal] = useState("");
+  const [editProfileModal, setEditProfileModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
@@ -41,12 +43,20 @@ function App() {
     handleCloseRegisterModal();
   };
 
+  const handleEditProfileModal = () => {
+    setEditProfileModal("create");
+  };
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
 
   const handleCloseRegisterModal = () => {
     setSigninModal("");
+  };
+
+  const handleCloseEditProfileModal = () => {
+    setEditProfileModal("");
   };
 
   const handleCloseLoginModal = () => {
@@ -133,11 +143,16 @@ function App() {
             <Profile
               onSelectCard={handleSelectedCard}
               openModal={handleCreateModal}
+              handleEditProfileModal={handleEditProfileModal}
               cards={cards}
             />
           </Route>
           <Footer />
-
+          {editProfileModal === "create" && (
+            <EditProfileModal
+              handleCloseEditProfileModal={handleCloseEditProfileModal}
+            />
+          )}
           {signinModal === "create" && (
             <RegisterModal
               isOpen={activeModal === "create"}

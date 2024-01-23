@@ -20,13 +20,13 @@ const Header = ({ onCreateModal, handleLoginModal, handleRegisterModal }) => {
       </div>
       <div className="header__info_user">
         <ToggleSwitch />
-        <button className="header__buttons" onClick={handleRegisterModal}>
+        {/* <button className="header__buttons" onClick={handleRegisterModal}>
           Sign Up
         </button>
         <button className="header__buttons" onClick={handleLoginModal}>
           Login
-        </button>
-        {/* <button onClick={onCreateModal} className="header__button">
+        </button> */}
+        <button onClick={onCreateModal} className="header__button">
           + Add Clothes
         </button>
         <Link className="header__name_link" to="/Profile">
@@ -39,7 +39,7 @@ const Header = ({ onCreateModal, handleLoginModal, handleRegisterModal }) => {
             alt="Users Avatar"
             src={headerAvatar}
           ></img>
-        </Link> */}
+        </Link>
       </div>
     </header>
   );

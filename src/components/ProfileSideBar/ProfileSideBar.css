@@ -1,3 +1,8 @@
+.profile__sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile__sidebar {
   display: flex;
 }
@@ -15,4 +20,29 @@
   font-weight: 700;
   line-height: normal;
   text-wrap: nowrap;
+}
+
+.profile__sidebar-edit {
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 24px;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.profile__sidebar-logout {
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 8px;
+  align-self: flex-start;
+  color: red;
+  cursor: pointer;
 }
