@@ -9,7 +9,7 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-const Header = ({ onCreateModal }) => {
+const Header = ({ onCreateModal, handleLoginModal, handleRegisterModal }) => {
   return (
     <header className="header">
       <div className="header__info">
@@ -20,7 +20,13 @@ const Header = ({ onCreateModal }) => {
       </div>
       <div className="header__info_user">
         <ToggleSwitch />
-        <button onClick={onCreateModal} className="header__button">
+        <button className="header__buttons" onClick={handleRegisterModal}>
+          Sign Up
+        </button>
+        <button className="header__buttons" onClick={handleLoginModal}>
+          Login
+        </button>
+        {/* <button onClick={onCreateModal} className="header__button">
           + Add Clothes
         </button>
         <Link className="header__name_link" to="/Profile">
@@ -33,7 +39,7 @@ const Header = ({ onCreateModal }) => {
             alt="Users Avatar"
             src={headerAvatar}
           ></img>
-        </Link>
+        </Link> */}
       </div>
     </header>
   );

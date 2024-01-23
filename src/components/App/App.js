@@ -6,10 +6,10 @@ import "../Footer/Footer.css";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import LoginModal from "../LoginModal/LoginModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
@@ -19,6 +19,8 @@ import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
+  const [loginModal, setLoginModal] = useState("");
+  const [signinModal, setSigninModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
@@ -26,6 +28,10 @@ function App() {
 
   const handleCreateModal = () => {
     setActiveModal("create");
+  };
+
+  const handleLoginModal = () => {
+    setLoginModal("create");
   };
 
   const handleCloseModal = () => {
@@ -95,6 +101,7 @@ function App() {
         >
           <Header
             onCreateModal={handleCreateModal}
+            handleLoginModal={handleLoginModal}
             onSelectCard={handleSelectedCard}
           >
             <ToggleSwitch />
@@ -114,6 +121,11 @@ function App() {
             />
           </Route>
           <Footer />
+
+          {loginModal === "create" && (
+            <LoginModal isOpen={activeModal === "create"} />
+          )}
+
           {activeModal === "create" && (
             <AddItemModal
               title="New Garmet"

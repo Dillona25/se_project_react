@@ -66,6 +66,16 @@
   display: none;
 }
 
+.header__buttons {
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet-Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1020px) {
   .header__info {
     font-size: 18px;

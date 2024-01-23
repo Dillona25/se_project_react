@@ -3,6 +3,7 @@ import "./ModalWithForm.css";
 const ModalWithForm = ({
   children,
   buttonText,
+  buttonTextAlt,
   title,
   onClose,
   name,
@@ -20,9 +21,14 @@ const ModalWithForm = ({
         <h1 className="modal__title">{title}</h1>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button className="modal__button" type="submit">
-            {(buttonText = "Add Garmet")}
-          </button>
+          <div className="modal__buttons">
+            <button className="modal__button" type="submit">
+              {buttonText}
+            </button>
+            <button className="modal__button-alt" type="button">
+              {buttonTextAlt}
+            </button>
+          </div>
         </form>
       </div>
     </div>
