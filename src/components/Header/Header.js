@@ -3,6 +3,8 @@ import headerLogo from "../../images/wtwr.svg";
 import headerAvatar from "../../images/Avatar WTWR.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -15,6 +17,8 @@ const Header = ({
   handleRegisterModal,
   isLoggedIn,
 }) => {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <div className="header__info">
@@ -31,7 +35,7 @@ const Header = ({
               + Add Clothes
             </button>
             <Link className="header__name_link" to="/Profile">
-              <p className="header__name">Terrence Tegegne</p>
+              <p className="header__name">Dillon Arnold</p>
             </Link>
             <button className="header__menu"></button>
             <Link className="header__link" to="/Profile">

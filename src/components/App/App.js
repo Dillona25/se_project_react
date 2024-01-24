@@ -21,6 +21,7 @@ import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { registration } from "../../utils/auth";
 import * as auth from "../../utils/auth";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -82,19 +83,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    getClothingItem()
-      .then((data) => {
-        const items = data.sort(
-          (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
-        );
-        setCards(items);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") {
       setCurrentTemerpatureUnit("F");
@@ -108,6 +96,17 @@ function App() {
       .then((res) => {
         setCards([res, ...cards]);
         handleCloseModal();
+        getClothingItem()
+          .then((data) => {
+            const items = data.sort(
+              (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
+            );
+            debugger;
+            setCards(items);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -188,76 +187,80 @@ function App() {
   return (
     <HashRouter>
       <div className="App">
-        <CurrentTemperatureUnitContext.Provider
-          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-        >
-          <Header
-            onCreateModal={handleCreateModal}
-            handleLoginModal={handleLoginModal}
-            handleRegisterModal={handleRegisterModal}
-            onSelectCard={handleSelectedCard}
-            isLoggedIn={isLoggedIn}
+        <CurrentUserContext.Provider value={{ currentUser }}>
+          <CurrentTemperatureUnitContext.Provider
+            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
           >
-            <ToggleSwitch />
-          </Header>
-          <Route exact path="/">
-            <Main
-              weatherTemp={temp}
-              cards={cards}
-              onSelectCard={handleSelectedCard}
-            />
-          </Route>
-          <ProtectedRoute isLoggedIn={isLoggedIn} path="/Profile">
-            <Profile
-              onSelectCard={handleSelectedCard}
-              openModal={handleCreateModal}
-              handleEditProfileModal={handleEditProfileModal}
-              cards={cards}
-            />
-          </ProtectedRoute>
-          <Footer />
-          {editProfileModal === "create" && (
-            <EditProfileModal
-              handleCloseEditProfileModal={handleCloseEditProfileModal}
-            />
-          )}
-          {signinModal === "create" && (
-            <RegisterModal
-              isOpen={activeModal === "create"}
-              handleCloseRegisterModal={handleCloseRegisterModal}
+            <Header
+              onCreateModal={handleCreateModal}
               handleLoginModal={handleLoginModal}
-              handleCreateModal={handleCreateModal}
-              onSubmit={handleRegistration}
-            />
-          )}
-
-          {loginModal === "create" && (
-            <LoginModal
-              isOpen={activeModal === "create"}
-              handleCloseLoginModal={handleCloseLoginModal}
               handleRegisterModal={handleRegisterModal}
-              onSubmit={handleLogin}
-            />
-          )}
-
-          {activeModal === "create" && (
-            <AddItemModal
-              title="New Garmet"
-              handleCloseModal={handleCloseModal}
-              isOpen={activeModal === "create"}
-              onAddItem={onAddItem}
-            />
-          )}
-          <div>
-            {activeModal === "preview" && (
-              <ItemModal
-                selectedCard={selectedCard}
-                onClose={handleCloseModal}
-                handleDeleteCard={handleDeleteCard}
+              onSelectCard={handleSelectedCard}
+              isLoggedIn={isLoggedIn}
+            >
+              <ToggleSwitch />
+            </Header>
+            <Route exact path="/">
+              <Main
+                weatherTemp={temp}
+                cards={cards}
+                onSelectCard={handleSelectedCard}
+              />
+            </Route>
+            <ProtectedRoute
+              path="/profile"
+              isLoggedIn={isLoggedIn}
+              component={() => (
+                <Profile
+                  onSelectCard={handleSelectedCard}
+                  openModal={handleCreateModal}
+                  handleEditProfileModal={handleEditProfileModal}
+                  cards={cards}
+                />
+              )}
+            ></ProtectedRoute>
+            <Footer />
+            {editProfileModal === "create" && (
+              <EditProfileModal
+                handleCloseEditProfileModal={handleCloseEditProfileModal}
               />
             )}
-          </div>
-        </CurrentTemperatureUnitContext.Provider>
+            {signinModal === "create" && (
+              <RegisterModal
+                isOpen={activeModal === "create"}
+                handleCloseRegisterModal={handleCloseRegisterModal}
+                handleLoginModal={handleLoginModal}
+                handleCreateModal={handleCreateModal}
+                onSubmit={handleRegistration}
+              />
+            )}
+            {loginModal === "create" && (
+              <LoginModal
+                isOpen={activeModal === "create"}
+                handleCloseLoginModal={handleCloseLoginModal}
+                handleRegisterModal={handleRegisterModal}
+                onSubmit={handleLogin}
+              />
+            )}
+            {activeModal === "create" && (
+              <AddItemModal
+                title="New Garmet"
+                handleCloseModal={handleCloseModal}
+                isOpen={activeModal === "create"}
+                onAddItem={onAddItem}
+              />
+            )}
+            <div>
+              {activeModal === "preview" && (
+                <ItemModal
+                  selectedCard={selectedCard}
+                  onClose={handleCloseModal}
+                  handleDeleteCard={handleDeleteCard}
+                />
+              )}
+            </div>
+          </CurrentTemperatureUnitContext.Provider>
+        </CurrentUserContext.Provider>
       </div>
     </HashRouter>
   );

@@ -1,11 +1,10 @@
 import { Route, Redirect } from "react-router-dom";
+import { useContext } from "react";
 import Profile from "../Profile/Profile";
 
-const ProtectedRoute = ({ isLoggedIn }) => {
+const ProtectedRoute = ({ isLoggedIn, component: Component, ...props }) => {
   return (
-    <Route path="/profile">
-      {isLoggedIn ? <Profile /> : <Redirect to="/" />}
-    </Route>
+    <Route {...props}>{isLoggedIn ? <Component /> : <Redirect to="/" />}</Route>
   );
 };
 

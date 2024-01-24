@@ -6,7 +6,7 @@ const ProfileSideBar = ({ handleEditProfileModal }) => {
     <div className="profile__sidebar-wrapper">
       <div className="profile__sidebar">
         <img src={avatar} className="profile__image"></img>
-        <h1 className="profile__name">Terrence Tegegne</h1>
+        <h1 className="profile__name">Dillon Arnold</h1>
       </div>
       <button
         className="profile__sidebar-edit"
