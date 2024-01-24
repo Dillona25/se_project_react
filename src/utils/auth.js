@@ -7,7 +7,7 @@ export const registration = (email, password, name, avatar) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, name, avatar }),
+    body: JSON.stringify({ name, avatar, email, password }),
   })
     .then(processServerResponse)
     .catch((err) => {

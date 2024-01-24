@@ -1,12 +1,34 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useState } from "react";
 
-const LoginModal = ({ handleCloseLoginModal, handleRegisterModal }) => {
+const LoginModal = ({
+  handleCloseLoginModal,
+  handleRegisterModal,
+  onSubmit,
+}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit({ email, password });
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <ModalWithForm
       title="log in"
       buttonText={"Login"}
       buttonTextAlt={"or Register"}
       onClose={handleCloseLoginModal}
+      onSubmit={handleSubmit}
     >
       <label className="modal__label">Email</label>
       <input
@@ -14,9 +36,11 @@ const LoginModal = ({ handleCloseLoginModal, handleRegisterModal }) => {
         placeholder="Email"
         type="email"
         name="email"
+        value={email}
         id="email"
         minLength="1"
         maxLength="30"
+        onChange={handleEmailChange}
       ></input>
       <label className="modal__label">Password</label>
       <input
@@ -24,9 +48,11 @@ const LoginModal = ({ handleCloseLoginModal, handleRegisterModal }) => {
         placeholder="Password"
         type="password"
         name="password"
+        value={password}
         id="password"
         minLength="8"
         maxLength="30"
+        onChange={handlePasswordChange}
       ></input>
       <button
         className="modal__button-alt"

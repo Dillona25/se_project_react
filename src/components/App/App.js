@@ -123,30 +123,37 @@ function App() {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    console.log({ jwt });
-    if (jwt) {
-      localStorage.setItem("jwt", jwt);
-      auth
-        .checkToken(jwt)
-        .then((res) => {
-          setIsLoggedIn(true);
-          setCurrentUser({ currentUser: res.data });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, []);
+  function handleLogin({ email, password }) {
+    auth
+      .authorize(email, password)
+      .then((res) => {
+        if (res) {
+          localStorage.setItem("jwt", res.token);
+          auth
+            .checkToken(res.token)
+            .then((data) => {
+              setCurrentUser(data.data);
+              setIsLoggedIn(true);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }
+        handleCloseLoginModal();
+      })
+      .catch((err) => {
+        console.error("Login failed", err);
+      });
+  }
 
   function handleRegistration({ email, password, name, avatar }) {
     auth
       .registration(email, password, name, avatar)
       .then((res) => {
         if (res) {
-          localStorage
-            .setItem("jwt", res.token)
+          localStorage.setItem("jwt", res.token);
+          auth
+            .checkToken(res.token)
             .then((data) => {
               setCurrentUser(data);
             })
@@ -160,6 +167,23 @@ function App() {
         console.error(err);
       });
   }
+
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    console.log({ jwt });
+    if ({ jwt }) {
+      localStorage.setItem("jwt", jwt);
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          setIsLoggedIn(true);
+          setCurrentUser({ currentUser: res.data });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, []);
 
   return (
     <HashRouter>
@@ -212,6 +236,7 @@ function App() {
               isOpen={activeModal === "create"}
               handleCloseLoginModal={handleCloseLoginModal}
               handleRegisterModal={handleRegisterModal}
+              onSubmit={handleLogin}
             />
           )}
 
