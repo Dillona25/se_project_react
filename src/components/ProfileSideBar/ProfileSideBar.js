@@ -1,7 +1,7 @@
 import avatar from "../../images/Avatar WTWR.svg";
 import "../ProfileSideBar/ProfileSideBar.css";
 
-const ProfileSideBar = ({ handleEditProfileModal }) => {
+const ProfileSideBar = ({ handleEditProfileModal, handleLogout }) => {
   return (
     <div className="profile__sidebar-wrapper">
       <div className="profile__sidebar">
@@ -14,7 +14,9 @@ const ProfileSideBar = ({ handleEditProfileModal }) => {
       >
         Edit profile data
       </button>
-      <button className="profile__sidebar-logout">Logout</button>
+      <button onClick={handleLogout} className="profile__sidebar-logout">
+        Logout
+      </button>
     </div>
   );
 };

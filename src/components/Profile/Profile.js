@@ -7,10 +7,14 @@ const Profile = ({
   openModal,
   cards,
   handleEditProfileModal,
+  handleLogout,
 }) => {
   return (
     <div className="profile">
-      <ProfileSideBar handleEditProfileModal={handleEditProfileModal} />
+      <ProfileSideBar
+        handleEditProfileModal={handleEditProfileModal}
+        handleLogout={handleLogout}
+      />
       <ProfileCards
         cards={cards}
         openModal={openModal}

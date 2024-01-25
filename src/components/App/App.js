@@ -16,7 +16,11 @@ import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { HashRouter, Route } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  HashRouter,
+  Route,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { registration } from "../../utils/auth";
@@ -101,7 +105,6 @@ function App() {
             const items = data.sort(
               (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
             );
-            debugger;
             setCards(items);
           })
           .catch((err) => {
@@ -184,6 +187,14 @@ function App() {
     }
   }, []);
 
+  const history = useHistory("");
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("jwt");
+    history.push("/");
+  };
+
   return (
     <HashRouter>
       <div className="App">
@@ -215,6 +226,7 @@ function App() {
                   onSelectCard={handleSelectedCard}
                   openModal={handleCreateModal}
                   handleEditProfileModal={handleEditProfileModal}
+                  handleLogout={handleLogout}
                   cards={cards}
                 />
               )}
