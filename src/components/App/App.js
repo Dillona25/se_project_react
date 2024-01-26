@@ -82,9 +82,15 @@ function App() {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeather(data);
+        console.log({ temperature });
         setTemp(temperature);
+        getClothingItem()
+          .then((res) => {
+            setCards(res.data);
+          })
+          .catch(() => console.log("Error!"));
       })
-      .catch((err) => console.log(err));
+      .catch(() => console.log("Error!"));
   }, []);
 
   const handleToggleSwitchChange = () => {

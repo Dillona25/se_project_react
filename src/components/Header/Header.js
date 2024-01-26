@@ -35,14 +35,14 @@ const Header = ({
               + Add Clothes
             </button>
             <Link className="header__name_link" to="/Profile">
-              <p className="header__name">Dillon Arnold</p>
+              <p className="header__name">{currentUser?.name}</p>
             </Link>
             <button className="header__menu"></button>
             <Link className="header__link" to="/Profile">
               <img
                 className="header__avatar"
                 alt="Users Avatar"
-                src={headerAvatar}
+                src={currentUser?.avatar}
               ></img>
             </Link>
           </>

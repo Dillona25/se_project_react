@@ -60,6 +60,7 @@
   height: 40px;
   width: 40px;
   align-self: center;
+  border-radius: 50%;
 }
 
 .header__menu {
