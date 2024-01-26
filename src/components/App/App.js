@@ -196,85 +196,83 @@ function App() {
   };
 
   return (
-    <HashRouter>
-      <div className="App">
-        <CurrentUserContext.Provider value={{ currentUser }}>
-          <CurrentTemperatureUnitContext.Provider
-            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    <div className="App">
+      <CurrentUserContext.Provider value={{ currentUser }}>
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+        >
+          <Header
+            onCreateModal={handleCreateModal}
+            handleLoginModal={handleLoginModal}
+            handleRegisterModal={handleRegisterModal}
+            onSelectCard={handleSelectedCard}
+            isLoggedIn={isLoggedIn}
           >
-            <Header
-              onCreateModal={handleCreateModal}
-              handleLoginModal={handleLoginModal}
-              handleRegisterModal={handleRegisterModal}
+            <ToggleSwitch />
+          </Header>
+          <Route exact path="/">
+            <Main
+              weatherTemp={temp}
+              cards={cards}
               onSelectCard={handleSelectedCard}
-              isLoggedIn={isLoggedIn}
-            >
-              <ToggleSwitch />
-            </Header>
-            <Route exact path="/">
-              <Main
-                weatherTemp={temp}
-                cards={cards}
+            />
+          </Route>
+          <ProtectedRoute
+            path="/profile"
+            isLoggedIn={isLoggedIn}
+            component={() => (
+              <Profile
                 onSelectCard={handleSelectedCard}
-              />
-            </Route>
-            <ProtectedRoute
-              path="/profile"
-              isLoggedIn={isLoggedIn}
-              component={() => (
-                <Profile
-                  onSelectCard={handleSelectedCard}
-                  openModal={handleCreateModal}
-                  handleEditProfileModal={handleEditProfileModal}
-                  handleLogout={handleLogout}
-                  cards={cards}
-                />
-              )}
-            ></ProtectedRoute>
-            <Footer />
-            {editProfileModal === "create" && (
-              <EditProfileModal
-                handleCloseEditProfileModal={handleCloseEditProfileModal}
+                openModal={handleCreateModal}
+                handleEditProfileModal={handleEditProfileModal}
+                handleLogout={handleLogout}
+                cards={cards}
               />
             )}
-            {signinModal === "create" && (
-              <RegisterModal
-                isOpen={activeModal === "create"}
-                handleCloseRegisterModal={handleCloseRegisterModal}
-                handleLoginModal={handleLoginModal}
-                handleCreateModal={handleCreateModal}
-                onSubmit={handleRegistration}
+          ></ProtectedRoute>
+          <Footer />
+          {editProfileModal === "create" && (
+            <EditProfileModal
+              handleCloseEditProfileModal={handleCloseEditProfileModal}
+            />
+          )}
+          {signinModal === "create" && (
+            <RegisterModal
+              isOpen={activeModal === "create"}
+              handleCloseRegisterModal={handleCloseRegisterModal}
+              handleLoginModal={handleLoginModal}
+              handleCreateModal={handleCreateModal}
+              onSubmit={handleRegistration}
+            />
+          )}
+          {loginModal === "create" && (
+            <LoginModal
+              isOpen={activeModal === "create"}
+              handleCloseLoginModal={handleCloseLoginModal}
+              handleRegisterModal={handleRegisterModal}
+              onSubmit={handleLogin}
+            />
+          )}
+          {activeModal === "create" && (
+            <AddItemModal
+              title="New Garmet"
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "create"}
+              onAddItem={onAddItem}
+            />
+          )}
+          <div>
+            {activeModal === "preview" && (
+              <ItemModal
+                selectedCard={selectedCard}
+                onClose={handleCloseModal}
+                handleDeleteCard={handleDeleteCard}
               />
             )}
-            {loginModal === "create" && (
-              <LoginModal
-                isOpen={activeModal === "create"}
-                handleCloseLoginModal={handleCloseLoginModal}
-                handleRegisterModal={handleRegisterModal}
-                onSubmit={handleLogin}
-              />
-            )}
-            {activeModal === "create" && (
-              <AddItemModal
-                title="New Garmet"
-                handleCloseModal={handleCloseModal}
-                isOpen={activeModal === "create"}
-                onAddItem={onAddItem}
-              />
-            )}
-            <div>
-              {activeModal === "preview" && (
-                <ItemModal
-                  selectedCard={selectedCard}
-                  onClose={handleCloseModal}
-                  handleDeleteCard={handleDeleteCard}
-                />
-              )}
-            </div>
-          </CurrentTemperatureUnitContext.Provider>
-        </CurrentUserContext.Provider>
-      </div>
-    </HashRouter>
+          </div>
+        </CurrentTemperatureUnitContext.Provider>
+      </CurrentUserContext.Provider>
+    </div>
   );
 }
 
