@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-.profile__cards_content {
+.profile__cards-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

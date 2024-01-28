@@ -18,17 +18,12 @@ const ProfileCards = ({ onSelectCard, openModal, cards }) => {
           + Add new
         </button>
       </div>
-      <div className="profile__cards_content">
-        {Array.isArray(filteredCards) &&
-          filteredCards.map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onSelectCard={onSelectCard}
-              />
-            );
-          })}
+      <div className="profile__cards-content">
+        {filteredCards.map((item) => {
+          return (
+            <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
+          );
+        })}
       </div>
     </div>
   );

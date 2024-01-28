@@ -85,10 +85,12 @@ function App() {
         console.log({ temperature });
         setTemp(temperature);
         getClothingItem()
-          .then((res) => {
-            setCards(res.data);
+          .then((data) => {
+            setCards(data);
           })
-          .catch(() => console.log("Error!"));
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch(() => console.log("Error!"));
   }, []);
@@ -185,7 +187,7 @@ function App() {
         .checkToken(jwt)
         .then((res) => {
           setIsLoggedIn(true);
-          setCurrentUser({ currentUser: res.data });
+          setCurrentUser(res.data);
         })
         .catch((err) => {
           console.error(err);

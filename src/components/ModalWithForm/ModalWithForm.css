@@ -66,6 +66,14 @@
   background-color: transparent;
 }
 
+.modal__delete-visible {
+  display: block;
+}
+
+.modal__delete-hidden {
+  display: none;
+}
+
 .modal__label {
   color: #000;
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
@@ -138,6 +146,7 @@
 
 .modal__image {
   max-width: 496px;
+  height: fit-content;
   border-radius: 20px 20px 0 0;
 }
 
