@@ -1,4 +1,3 @@
-import { weatherOptions } from "../components/WeatherCard/WeatherCard";
 import processServerResponse from "./processServerResponse";
 
 const latitude = 45.5152;
@@ -15,7 +14,7 @@ export const getForecastWeather = () => {
 export const parseWeather = (data) => {
   const main = data.main;
   const temperature = main && main.temp;
-  const weather = {
+  const weatherTemp = {
     temperature: {
       F: Math.round(temperature),
       C: Math.round(((temperature - 32) * 5) / 9),

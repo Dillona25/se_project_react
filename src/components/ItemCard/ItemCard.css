@@ -55,8 +55,9 @@
 .cards__image {
   width: 328px;
   height: 328px;
-  border-radius: 19px;
+  border-radius: 0 0 19px 19px;
   cursor: pointer;
+  margin-top: 16px;
 }
 
 .cards__random {

@@ -25,9 +25,6 @@ const ModalWithForm = ({
             <button className="modal__button" type="submit">
               {buttonText}
             </button>
-            {/* <button className="modal__button-alt" type="button">
-              {buttonTextAlt}
-            </button> */}
           </div>
         </form>
       </div>

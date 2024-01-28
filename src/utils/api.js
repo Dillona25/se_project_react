@@ -32,3 +32,18 @@ export const deleteItem = (id) => {
     },
   }).then((res) => processServerResponse(res));
 };
+
+export const profileUpdate = (name, avatar) => {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  }).then(processServerResponse);
+};

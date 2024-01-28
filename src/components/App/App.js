@@ -21,7 +21,12 @@ import {
   Route,
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { getClothingItem, addNewItem, deleteItem } from "../../utils/api";
+import {
+  getClothingItem,
+  addNewItem,
+  deleteItem,
+  profileUpdate,
+} from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { registration } from "../../utils/auth";
 import * as auth from "../../utils/auth";
@@ -178,6 +183,19 @@ function App() {
       });
   }
 
+  const handleEditUser = ({ name, avatar }) => {
+    console.log(name, avatar);
+    profileUpdate(name, avatar)
+      .then(({ data }) => {
+        setCurrentUser(data);
+        handleCloseEditProfileModal();
+        return data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     console.log({ jwt });
@@ -242,6 +260,8 @@ function App() {
           {editProfileModal === "create" && (
             <EditProfileModal
               handleCloseEditProfileModal={handleCloseEditProfileModal}
+              isOpen={activeModal === "create"}
+              onSubmit={handleEditUser}
             />
           )}
           {signinModal === "create" && (
