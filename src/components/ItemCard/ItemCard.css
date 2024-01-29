@@ -28,6 +28,24 @@
   background: #e9e9e9;
 }
 
+.cards__item_top-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.cards__like {
+  background-image: url(../../images/Like\ button.svg);
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 17px;
+  align-self: center;
+  cursor: pointer;
+}
+
 .cards__title {
   color: rgba(0, 0, 0, 0.6);
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
@@ -48,8 +66,6 @@
   background-color: #fff;
   width: fit-content;
   height: fit-content;
-  margin: auto;
-  margin-top: 16px;
 }
 
 .cards__image {

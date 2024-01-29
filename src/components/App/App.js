@@ -1,8 +1,4 @@
-import logo from "../../logo.svg";
-import "./App.css";
-import "../Header/Header.css";
-import "../ItemCard/ItemCard.css";
-import "../Footer/Footer.css";
+//* Component imports
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -12,25 +8,32 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { useEffect, useState } from "react";
-import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+//* Component css
+import "./App.css";
+import "../Header/Header.css";
+import "../ItemCard/ItemCard.css";
+import "../Footer/Footer.css";
+
+//* React dependencies
+import { useEffect, useState } from "react";
+import { Route, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+//* Contexts
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import {
-  HashRouter,
-  Route,
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom.min";
+
+//* Api imports
+import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
 import {
   getClothingItem,
   addNewItem,
   deleteItem,
   profileUpdate,
 } from "../../utils/api";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { registration } from "../../utils/auth";
 import * as auth from "../../utils/auth";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
