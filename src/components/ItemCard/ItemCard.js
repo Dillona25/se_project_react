@@ -8,7 +8,7 @@ const ItemCard = ({ item, onSelectCard }) => {
           <div className="cards__title_frame">
             <h2 className="cards__title">{item.name}</h2>
           </div>
-          <button className="cards__like"></button>
+          <button className="cards__like">Hello</button>
         </div>
         <img
           className="cards__image"
