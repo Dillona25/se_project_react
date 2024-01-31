@@ -10,6 +10,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 
 //* Component css
 import "./App.css";
@@ -40,6 +41,7 @@ import * as auth from "../../utils/auth";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [loginModal, setLoginModal] = useState("");
+  const [confirmModal, setConfirmModal] = useState("");
   const [signinModal, setSigninModal] = useState("");
   const [editProfileModal, setEditProfileModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -67,6 +69,20 @@ function App() {
     setEditProfileModal("create");
   };
 
+  const handleConfirmModal = () => {
+    setConfirmModal("create");
+    handleCloseItemModal();
+  };
+
+  const handleSelectedCard = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+
+  const handleCloseItemModal = () => {
+    setActiveModal("");
+  };
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
@@ -83,9 +99,8 @@ function App() {
     setLoginModal("");
   };
 
-  const handleSelectedCard = (card) => {
-    setActiveModal("preview");
-    setSelectedCard(card);
+  const handleCloseConfirmModal = () => {
+    setConfirmModal("");
   };
 
   useEffect(() => {
@@ -323,15 +338,21 @@ function App() {
               onAddItem={onAddItem}
             />
           )}
-          <div>
-            {activeModal === "preview" && (
-              <ItemModal
-                selectedCard={selectedCard}
-                onClose={handleCloseModal}
-                handleDeleteCard={handleDeleteCard}
-              />
-            )}
-          </div>
+
+          {activeModal === "preview" && (
+            <ItemModal
+              selectedCard={selectedCard}
+              onClose={handleCloseModal}
+              handleConfirmModal={handleConfirmModal}
+              handleCloseItemModal={handleCloseItemModal}
+            />
+          )}
+          {confirmModal === "create" && (
+            <ConfirmModal
+              handleCloseConfirmModal={handleCloseConfirmModal}
+              handleDeleteCard={handleDeleteCard}
+            />
+          )}
         </CurrentTemperatureUnitContext.Provider>
       </CurrentUserContext.Provider>
     </div>

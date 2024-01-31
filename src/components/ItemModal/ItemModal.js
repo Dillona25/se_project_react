@@ -4,8 +4,9 @@ import { useContext } from "react";
 const ItemModal = ({
   selectedCard,
   onSelectCard,
-  onClose,
+  handleCloseItemModal,
   handleDeleteCard,
+  handleConfirmModal,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const isOwn = selectedCard.owner === currentUser?._id;
@@ -16,7 +17,10 @@ const ItemModal = ({
   return (
     <div className={`modal modal__type_preview`}>
       <div className="modal__container_preview">
-        <button className="modal__close" onClick={onClose}></button>
+        <button
+          className="modal__close"
+          onClick={handleCloseItemModal}
+        ></button>
         <img
           className="modal__image"
           src={selectedCard.imageUrl}
@@ -27,7 +31,7 @@ const ItemModal = ({
           <div className="modal__title_wrapper">
             <h2 className="modal__title_preview">{selectedCard.name}</h2>
             <button
-              onClick={handleDeleteCard}
+              onClick={handleConfirmModal}
               className={deleteButtonClassName}
             >
               Delete Card

@@ -1,12 +1,16 @@
-import { weatherOptions } from "../../utils/constants";
 import { useContext } from "react";
-import { getClothingItem } from "../../utils/api";
 import "../Main/Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, cards, onCardLike }) {
+function Main({
+  weatherTemp,
+  onSelectCard,
+  cards,
+  onCardLike,
+  handleCloseItemModal,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const getWeatherType = () => {
