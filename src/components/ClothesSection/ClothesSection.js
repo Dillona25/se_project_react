@@ -3,7 +3,7 @@ import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ProfileCards = ({ onSelectCard, openModal, cards, onCardLike }) => {
+const ClothesSection = ({ onSelectCard, openModal, cards, onCardLike }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   console.log(currentUser, cards);
@@ -38,4 +38,4 @@ const ProfileCards = ({ onSelectCard, openModal, cards, onCardLike }) => {
   );
 };
 
-export default ProfileCards;
+export default ClothesSection;

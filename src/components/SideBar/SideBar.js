@@ -2,7 +2,7 @@ import "./SideBar.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-const ProfileSideBar = ({ handleEditProfileModal, handleLogout }) => {
+const SideBar = ({ handleEditProfileModal, handleLogout }) => {
   const { currentUser } = useContext(CurrentUserContext);
   return (
     <div className="profile__sidebar-wrapper">
@@ -23,4 +23,4 @@ const ProfileSideBar = ({ handleEditProfileModal, handleLogout }) => {
   );
 };
 
-export default ProfileSideBar;
+export default SideBar;
