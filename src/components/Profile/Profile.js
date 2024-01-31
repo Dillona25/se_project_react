@@ -1,4 +1,4 @@
-import ProfileSideBar from "../ProfileSideBar/ProfileSideBar";
+import ProfileSideBar from "../SideBar/SideBar";
 import ProfileCards from "../ProfileCards/ProfileCards";
 import "../Profile/Profile.css";
 

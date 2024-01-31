@@ -1,5 +1,4 @@
-import avatar from "../../images/Avatar WTWR.svg";
-import "../ProfileSideBar/ProfileSideBar.css";
+import "./SideBar.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
