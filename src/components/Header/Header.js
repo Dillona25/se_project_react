@@ -34,11 +34,11 @@ const Header = ({
             <button onClick={onCreateModal} className="header__button">
               + Add Clothes
             </button>
-            <Link className="header__name_link" to="/Profile">
+            <Link className="header__name_link" to="/profile">
               <p className="header__name">{currentUser?.name}</p>
             </Link>
             <button className="header__menu"></button>
-            <Link className="header__link" to="/Profile">
+            <Link className="header__link" to="/profile">
               <img
                 className="header__avatar"
                 alt="Users Avatar"
