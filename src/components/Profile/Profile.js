@@ -1,5 +1,5 @@
-import ProfileSideBar from "../SideBar/SideBar";
-import ProfileCards from "../ProfileCards/ProfileCards";
+import SideBar from "../SideBar/SideBar";
+import ClothesSection from "../ClothesSection/ClothesSection";
 import "../Profile/Profile.css";
 
 const Profile = ({
@@ -12,11 +12,11 @@ const Profile = ({
 }) => {
   return (
     <div className="profile">
-      <ProfileSideBar
+      <SideBar
         handleEditProfileModal={handleEditProfileModal}
         handleLogout={handleLogout}
       />
-      <ProfileCards
+      <ClothesSection
         cards={cards}
         openModal={openModal}
         onSelectCard={onSelectCard}
