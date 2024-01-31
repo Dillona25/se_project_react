@@ -35,15 +35,21 @@
   justify-content: center;
 }
 
-.cards__like {
-  background-image: url(../../images/Like\ button.svg);
-  background-repeat: no-repeat;
+.cards__like-wrapper {
+  border: none;
   border: none;
   background-color: transparent;
   width: 20px;
   height: 17px;
+}
+
+.cards__like {
   align-self: center;
   cursor: pointer;
+}
+
+.cards__like-hidden {
+  display: none;
 }
 
 .cards__title {

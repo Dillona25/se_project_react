@@ -32,6 +32,8 @@ import {
   addNewItem,
   deleteItem,
   profileUpdate,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/api";
 import * as auth from "../../utils/auth";
 
@@ -224,6 +226,33 @@ function App() {
     history.push("/");
   };
 
+  const handleLikeClick = ({ id, isLiked, user }) => {
+    console.log({ id, isLiked, user });
+    const token = localStorage.getItem("jwt");
+    return isLiked
+      ? removeCardLike(id, token)
+          .then((updatedCard) => {
+            console.log(
+              "updated card data: ",
+              updatedCard,
+              cards,
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
+            );
+            setCards(() =>
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : addCardLike(id, token)
+          .then((updatedCard) => {
+            console.log("updated card data: ", updatedCard);
+            setCards(() =>
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   return (
     <div className="App">
       <CurrentUserContext.Provider value={{ currentUser }}>
@@ -244,6 +273,7 @@ function App() {
               weatherTemp={temp}
               cards={cards}
               onSelectCard={handleSelectedCard}
+              onCardLike={handleLikeClick}
             />
           </Route>
           <ProtectedRoute
@@ -256,6 +286,7 @@ function App() {
                 handleEditProfileModal={handleEditProfileModal}
                 handleLogout={handleLogout}
                 cards={cards}
+                onCardLike={handleLikeClick}
               />
             )}
           ></ProtectedRoute>

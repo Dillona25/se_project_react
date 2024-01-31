@@ -3,7 +3,7 @@ import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ProfileCards = ({ onSelectCard, openModal, cards }) => {
+const ProfileCards = ({ onSelectCard, openModal, cards, onCardLike }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   console.log(currentUser, cards);
@@ -25,7 +25,12 @@ const ProfileCards = ({ onSelectCard, openModal, cards }) => {
       <div className="profile__cards-content">
         {filteredCards.map((item) => {
           return (
-            <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
+            <ItemCard
+              onCardLike={onCardLike}
+              key={item._id}
+              item={item}
+              onSelectCard={onSelectCard}
+            />
           );
         })}
       </div>
