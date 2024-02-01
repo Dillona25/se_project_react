@@ -20,5 +20,6 @@ export const parseWeather = (data) => {
       C: Math.round(((temperature - 32) * 5) / 9),
     },
   };
-  return Math.ceil(temperature);
+  console.log(weatherTemp);
+  return Math.ceil(weatherTemp);
 };

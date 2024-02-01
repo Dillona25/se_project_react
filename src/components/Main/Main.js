@@ -4,13 +4,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({
-  weatherTemp,
-  onSelectCard,
-  cards,
-  onCardLike,
-  handleCloseItemModal,
-}) {
+function Main({ weatherTemp, onSelectCard, cards, onCardLike, isLoggedIn }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const getWeatherType = () => {
@@ -45,6 +39,7 @@ function Main({
                 item={item}
                 onSelectCard={onSelectCard}
                 onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
               />
             );
           })}

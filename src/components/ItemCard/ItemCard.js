@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 import likeButton from "../../images/Like button.svg";
 import likeButtonActive from "../../images/likeActive.svg";
 
-const ItemCard = ({ item, onSelectCard, loggedIn, onCardLike }) => {
+const ItemCard = ({ item, onSelectCard, loggedIn, onCardLike, isLoggedIn }) => {
   const { currentUser } = useContext(CurrentUserContext);
   const likeButtonClassName = `cards__like ${
     loggedIn ? "cards__like-hidden" : "cards__like"
@@ -30,13 +30,17 @@ const ItemCard = ({ item, onSelectCard, loggedIn, onCardLike }) => {
           <div className="cards__title_frame">
             <h2 className="cards__title">{item.name}</h2>
           </div>
-          <button onClick={handleLikeClick} className="cards__like-wrapper">
-            <img
-              src={isLiked ? likeButton : likeButtonActive}
-              alt="like button"
-              className={likeButtonClassName}
-            ></img>
-          </button>
+          {isLoggedIn ? (
+            <button onClick={handleLikeClick} className="cards__like-wrapper">
+              <img
+                src={isLiked ? likeButton : likeButtonActive}
+                alt="like button"
+                className={likeButtonClassName}
+              ></img>
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <img
           className="cards__image"

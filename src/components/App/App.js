@@ -107,7 +107,6 @@ function App() {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeather(data);
-        console.log({ temperature });
         setTemp(temperature);
         getClothingItem()
           .then((data) => {
@@ -149,7 +148,9 @@ function App() {
       });
   };
 
-  const handleDeleteCard = () => {
+  const handleDeleteCard = (e) => {
+    e.preventDefault();
+    handleCloseConfirmModal();
     deleteItem(selectedCard._id)
       .then(() => {
         setCards(cards.filter((item) => item._id !== selectedCard._id));
@@ -218,7 +219,6 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
-    console.log({ jwt });
     if ({ jwt }) {
       localStorage.setItem("jwt", jwt);
       auth
@@ -289,6 +289,7 @@ function App() {
               cards={cards}
               onSelectCard={handleSelectedCard}
               onCardLike={handleLikeClick}
+              isLoggedIn={isLoggedIn}
             />
           </Route>
           <ProtectedRoute

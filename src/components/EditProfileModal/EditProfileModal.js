@@ -8,7 +8,7 @@ const EditProfileModal = ({
   isOpen,
   onSubmit,
 }) => {
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
@@ -21,8 +21,8 @@ const EditProfileModal = ({
   };
 
   useEffect(() => {
-    setName(currentUser?.name ?? "");
-    setAvatar(currentUser?.avatar ?? "");
+    setName(currentUser.name ?? "");
+    setAvatar(currentUser.avatar ?? "");
   }, [isOpen]);
 
   const handleSubmit = (e) => {
