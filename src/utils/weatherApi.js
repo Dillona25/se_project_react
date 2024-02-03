@@ -1,3 +1,4 @@
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import processServerResponse from "./processServerResponse";
 
 const latitude = 45.5152;
@@ -20,6 +21,5 @@ export const parseWeather = (data) => {
       C: Math.round(((temperature - 32) * 5) / 9),
     },
   };
-  console.log(weatherTemp);
-  return Math.ceil(weatherTemp);
+  return weatherTemp;
 };

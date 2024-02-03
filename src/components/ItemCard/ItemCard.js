@@ -30,17 +30,13 @@ const ItemCard = ({ item, onSelectCard, loggedIn, onCardLike, isLoggedIn }) => {
           <div className="cards__title_frame">
             <h2 className="cards__title">{item.name}</h2>
           </div>
-          {isLoggedIn ? (
-            <button onClick={handleLikeClick} className="cards__like-wrapper">
-              <img
-                src={isLiked ? likeButton : likeButtonActive}
-                alt="like button"
-                className={likeButtonClassName}
-              ></img>
-            </button>
-          ) : (
-            ""
-          )}
+          <button onClick={handleLikeClick} className="cards__like-wrapper">
+            <img
+              src={isLiked ? likeButton : likeButtonActive}
+              alt="like button"
+              className={likeButtonClassName}
+            ></img>
+          </button>
         </div>
         <img
           className="cards__image"

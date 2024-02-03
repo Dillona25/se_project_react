@@ -7,6 +7,8 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 function Main({ weatherTemp, onSelectCard, cards, onCardLike, isLoggedIn }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
+  const temp = weatherTemp?.temperature?.[currentTemperatureUnit];
+
   const getWeatherType = () => {
     if (weatherTemp >= 86) {
       return "hot";
@@ -25,11 +27,10 @@ function Main({ weatherTemp, onSelectCard, cards, onCardLike, isLoggedIn }) {
 
   return (
     <main className="main">
-      <WeatherCard day={true} type="cloudy" weatherTemp={weatherTemp} />
+      <WeatherCard day={true} type="cloudy" weatherTemp={temp} />
       <section className="cards">
         <p className="cards__temp">
-          Today is {weatherTemp + "°" + currentTemperatureUnit} You may want to
-          wear:
+          Today is {temp + "°" + currentTemperatureUnit} You may want to wear:
         </p>
         <div className="cards__items">
           {filteredCards.map((item) => {
