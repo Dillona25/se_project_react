@@ -54,7 +54,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         required
         placeholder="Image URL"
       ></input>
-      <label className="modal__label">Select the weather type:</label>
+      <h3 className="modal__label">Select the weather type:</h3>
       <div>
         <div>
           <label id="modal__radio" className="modal__label">

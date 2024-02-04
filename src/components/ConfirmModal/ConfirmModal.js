@@ -1,11 +1,8 @@
-const ConfirmModal = ({ handleCloseConfirmModal, handleDeleteCard }) => {
+const ConfirmModal = ({ handleCloseModal, handleDeleteCard }) => {
   return (
     <div className="modal">
       <div className="modal__container-confirm">
-        <button
-          onClick={handleCloseConfirmModal}
-          className="modal__close"
-        ></button>
+        <button onClick={handleCloseModal} className="modal__close"></button>
         <form className="modal__form-confirm">
           <span className="modal__confirm-text">
             Are you sure you want to delete this item? This action is
@@ -14,10 +11,7 @@ const ConfirmModal = ({ handleCloseConfirmModal, handleDeleteCard }) => {
           <button onClick={handleDeleteCard} className="modal__button-delete">
             Yes, delete item
           </button>
-          <button
-            onClick={handleCloseConfirmModal}
-            className="modal__button-cancel"
-          >
+          <button onClick={handleCloseModal} className="modal__button-cancel">
             Cancel
           </button>
         </form>

@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
 const RegisterModal = ({
-  handleCloseRegisterModal,
+  handleCloseModal,
   handleLoginModal,
   onSubmit,
   isOpen,
@@ -42,7 +42,7 @@ const RegisterModal = ({
   return (
     <ModalWithForm
       title={"Sign Up"}
-      onClose={handleCloseRegisterModal}
+      onClose={handleCloseModal}
       buttonText={"Next"}
       buttonTextAlt={"or Log In"}
       onSubmit={handleSubmit}

@@ -38,11 +38,8 @@ import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 
 function App() {
+  //* States
   const [activeModal, setActiveModal] = useState("");
-  const [loginModal, setLoginModal] = useState("");
-  const [confirmModal, setConfirmModal] = useState("");
-  const [signinModal, setSigninModal] = useState("");
-  const [editProfileModal, setEditProfileModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
@@ -50,27 +47,25 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
+  //* Handling active modals
   const handleCreateModal = () => {
     setActiveModal("create");
   };
 
   const handleRegisterModal = () => {
-    setSigninModal("create");
-    handleCloseLoginModal();
+    setActiveModal("registerModal");
   };
 
   const handleLoginModal = () => {
-    setLoginModal("create");
-    handleCloseRegisterModal();
+    setActiveModal("loginModal");
   };
 
   const handleEditProfileModal = () => {
-    setEditProfileModal("create");
+    setActiveModal("profileModal");
   };
 
   const handleConfirmModal = () => {
-    setConfirmModal("create");
-    handleCloseItemModal();
+    setActiveModal("confirmModal");
   };
 
   const handleSelectedCard = (card) => {
@@ -78,30 +73,11 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleCloseItemModal = () => {
-    setActiveModal("");
-  };
-
   const handleCloseModal = () => {
     setActiveModal("");
   };
 
-  const handleCloseRegisterModal = () => {
-    setSigninModal("");
-  };
-
-  const handleCloseEditProfileModal = () => {
-    setEditProfileModal("");
-  };
-
-  const handleCloseLoginModal = () => {
-    setLoginModal("");
-  };
-
-  const handleCloseConfirmModal = () => {
-    setConfirmModal("");
-  };
-
+  //* Setting clothing item to respected weather type
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
@@ -118,6 +94,7 @@ function App() {
       .catch(() => console.log("Error!"));
   }, []);
 
+  //* Handling toggle switch change by user
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") {
       setCurrentTemerpatureUnit("F");
@@ -126,6 +103,7 @@ function App() {
     }
   };
 
+  //* Call back function for adding a new clothing item
   const onAddItem = ({ name, imageUrl, weather }) => {
     addNewItem({ name, imageUrl, weather })
       .then((res) => {
@@ -147,9 +125,10 @@ function App() {
       });
   };
 
+  //* Call back function for deleting item
   const handleDeleteCard = (e) => {
     e.preventDefault();
-    handleCloseConfirmModal();
+    handleCloseModal();
     deleteItem(selectedCard._id)
       .then(() => {
         setCards(cards.filter((item) => item._id !== selectedCard._id));
@@ -158,6 +137,7 @@ function App() {
       .catch((err) => console.error(err));
   };
 
+  //* Call back function to log a user in
   function handleLogin({ email, password }) {
     auth
       .authorize(email, password)
@@ -174,13 +154,14 @@ function App() {
               console.error(err);
             });
         }
-        handleCloseLoginModal();
+        handleCloseModal();
       })
       .catch((err) => {
         console.error("Login failed", err);
       });
   }
 
+  //* Call back function to sign a user up
   function handleRegistration({ email, password, name, avatar }) {
     auth
       .registration(email, password, name, avatar)
@@ -196,19 +177,20 @@ function App() {
               console.error(err);
             });
         }
-        handleCloseRegisterModal();
+        handleCloseModal();
       })
       .catch((err) => {
         console.error(err);
       });
   }
 
+  //* Editing profile
   const handleEditUser = ({ name, avatar }) => {
     console.log(name, avatar);
     profileUpdate(name, avatar)
       .then(({ data }) => {
         setCurrentUser(data);
-        handleCloseEditProfileModal();
+        handleCloseModal();
         return data;
       })
       .catch((err) => {
@@ -216,6 +198,7 @@ function App() {
       });
   };
 
+  //* Checking for token
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if ({ jwt }) {
@@ -232,23 +215,21 @@ function App() {
     }
   }, []);
 
+  //* Logging a user out
   const history = useHistory("");
-
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
     history.push("/");
   };
 
+  //* Liking a card
   const handleCardLike = (id, isLiked) => {
     const token = localStorage.getItem("jwt");
     console.log(id);
     console.log(isLiked);
-    // Check if this card is now liked
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
-          // the first argument is the card's id
+      ? api
           .addCardLike(id, token)
           .then(({ data: updatedCard }) => {
             console.log(updatedCard);
@@ -257,9 +238,7 @@ function App() {
             );
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
-          // the first argument is the card's id
+      : api
           .removeCardLike(id, token)
           .then(({ data: updatedCard }) => {
             setCards((cards) =>
@@ -276,7 +255,7 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <Header
-            onCreateModal={handleCreateModal}
+            handleCreateModal={handleCreateModal}
             handleLoginModal={handleLoginModal}
             handleRegisterModal={handleRegisterModal}
             onSelectCard={handleSelectedCard}
@@ -309,26 +288,26 @@ function App() {
             )}
           ></ProtectedRoute>
           <Footer />
-          {editProfileModal === "create" && (
+          {activeModal === "profileModal" && (
             <EditProfileModal
-              handleCloseEditProfileModal={handleCloseEditProfileModal}
+              handleCloseModal={handleCloseModal}
               isOpen={activeModal === "create"}
               onSubmit={handleEditUser}
             />
           )}
-          {signinModal === "create" && (
+          {activeModal === "registerModal" && (
             <RegisterModal
               isOpen={activeModal === "create"}
-              handleCloseRegisterModal={handleCloseRegisterModal}
+              handleCloseModal={handleCloseModal}
               handleLoginModal={handleLoginModal}
               handleCreateModal={handleCreateModal}
               onSubmit={handleRegistration}
             />
           )}
-          {loginModal === "create" && (
+          {activeModal === "loginModal" && (
             <LoginModal
               isOpen={activeModal === "create"}
-              handleCloseLoginModal={handleCloseLoginModal}
+              handleCloseModal={handleCloseModal}
               handleRegisterModal={handleRegisterModal}
               onSubmit={handleLogin}
             />
@@ -347,12 +326,12 @@ function App() {
               selectedCard={selectedCard}
               onClose={handleCloseModal}
               handleConfirmModal={handleConfirmModal}
-              handleCloseItemModal={handleCloseItemModal}
+              handleCloseModal={handleCloseModal}
             />
           )}
-          {confirmModal === "create" && (
+          {activeModal === "confirmModal" && (
             <ConfirmModal
-              handleCloseConfirmModal={handleCloseConfirmModal}
+              handleCloseModal={handleCloseModal}
               handleDeleteCard={handleDeleteCard}
             />
           )}

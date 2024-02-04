@@ -12,7 +12,7 @@ const currentDate = new Date().toLocaleString("default", {
 });
 
 const Header = ({
-  onCreateModal,
+  handleCreateModal,
   handleLoginModal,
   handleRegisterModal,
   isLoggedIn,
@@ -31,7 +31,7 @@ const Header = ({
         <ToggleSwitch />
         {isLoggedIn ? (
           <>
-            <button onClick={onCreateModal} className="header__button">
+            <button onClick={handleCreateModal} className="header__button">
               + Add Clothes
             </button>
             <Link className="header__name_link" to="/profile">

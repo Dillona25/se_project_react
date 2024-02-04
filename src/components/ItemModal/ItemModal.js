@@ -4,7 +4,7 @@ import { useContext } from "react";
 const ItemModal = ({
   selectedCard,
   onSelectCard,
-  handleCloseItemModal,
+  handleCloseModal,
   handleConfirmModal,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
@@ -16,10 +16,7 @@ const ItemModal = ({
   return (
     <div className={`modal modal__type_preview`}>
       <div className="modal__container_preview">
-        <button
-          className="modal__close"
-          onClick={handleCloseItemModal}
-        ></button>
+        <button className="modal__close" onClick={handleCloseModal}></button>
         <img
           className="modal__image"
           src={selectedCard.imageUrl}
