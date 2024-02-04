@@ -5,7 +5,6 @@ const ItemModal = ({
   selectedCard,
   onSelectCard,
   handleCloseItemModal,
-  handleDeleteCard,
   handleConfirmModal,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);

@@ -3,16 +3,18 @@ import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ClothesSection = ({ onSelectCard, openModal, cards, onCardLike }) => {
+const ClothesSection = ({
+  onSelectCard,
+  openModal,
+  cards,
+  isLoggedIn,
+  onCardLike,
+}) => {
   const { currentUser } = useContext(CurrentUserContext);
-
-  console.log(currentUser, cards);
 
   const filteredCards = cards.filter((item) => {
     return item.owner === currentUser?._id;
   });
-
-  console.log(filteredCards);
 
   return (
     <div className="profile__cards">
@@ -26,10 +28,11 @@ const ClothesSection = ({ onSelectCard, openModal, cards, onCardLike }) => {
         {filteredCards.map((item) => {
           return (
             <ItemCard
-              onCardLike={onCardLike}
               key={item._id}
               item={item}
               onSelectCard={onSelectCard}
+              isLoggedIn={isLoggedIn}
+              onCardLike={onCardLike}
             />
           );
         })}

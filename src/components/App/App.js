@@ -33,10 +33,9 @@ import {
   addNewItem,
   deleteItem,
   profileUpdate,
-  addCardLike,
-  removeCardLike,
 } from "../../utils/api";
 import * as auth from "../../utils/auth";
+import * as api from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -241,28 +240,30 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = ({ id, isLiked, user }) => {
-    console.log({ id, isLiked, user });
+  const handleCardLike = (id, isLiked) => {
     const token = localStorage.getItem("jwt");
-    return isLiked
-      ? removeCardLike(id, token)
-          .then((updatedCard) => {
-            console.log(
-              "updated card data: ",
-              updatedCard,
-              cards,
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
-            );
-            setCards(() =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+    console.log(id);
+    console.log(isLiked);
+    // Check if this card is now liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then(({ data: updatedCard }) => {
+            console.log(updatedCard);
+            setCards((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
             );
           })
           .catch((err) => console.log(err))
-      : addCardLike(id, token)
-          .then((updatedCard) => {
-            console.log("updated card data: ", updatedCard);
-            setCards(() =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then(({ data: updatedCard }) => {
+            setCards((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
             );
           })
           .catch((err) => console.log(err));
@@ -288,8 +289,8 @@ function App() {
               weatherTemp={temp}
               cards={cards}
               onSelectCard={handleSelectedCard}
-              onCardLike={handleLikeClick}
               isLoggedIn={isLoggedIn}
+              onCardLike={handleCardLike}
             />
           </Route>
           <ProtectedRoute
@@ -302,7 +303,8 @@ function App() {
                 handleEditProfileModal={handleEditProfileModal}
                 handleLogout={handleLogout}
                 cards={cards}
-                onCardLike={handleLikeClick}
+                isLoggedIn={isLoggedIn}
+                onCardLike={handleCardLike}
               />
             )}
           ></ProtectedRoute>

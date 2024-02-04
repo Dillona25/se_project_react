@@ -5,24 +5,11 @@ import { useState, useContext } from "react";
 import likeButton from "../../images/Like button.svg";
 import likeButtonActive from "../../images/likeActive.svg";
 
-const ItemCard = ({ item, onSelectCard, loggedIn, onCardLike, isLoggedIn }) => {
+const ItemCard = ({ item, onSelectCard, isLoggedIn, onCardLike }) => {
   const { currentUser } = useContext(CurrentUserContext);
-  const likeButtonClassName = `cards__like ${
-    loggedIn ? "cards__like-hidden" : "cards__like"
-  }`;
 
-  const [isLiked, setIsLiked] = useState(
-    item.likes.some((like) => like === currentUser?._id)
-  );
+  const isLiked = item.likes.some((id) => id === currentUser?._id);
 
-  function handleLikeClick() {
-    const newLikeStatus = !isLiked;
-    onCardLike({ id: item._id, isLiked: isLiked, user: currentUser })
-      .then(() => {
-        setIsLiked(newLikeStatus);
-      })
-      .catch((err) => console.error(err));
-  }
   return (
     <div className="cards__container">
       <div className="cards__item_container">
@@ -30,13 +17,20 @@ const ItemCard = ({ item, onSelectCard, loggedIn, onCardLike, isLoggedIn }) => {
           <div className="cards__title_frame">
             <h2 className="cards__title">{item.name}</h2>
           </div>
-          <button onClick={handleLikeClick} className="cards__like-wrapper">
-            <img
-              src={isLiked ? likeButton : likeButtonActive}
-              alt="like button"
-              className={likeButtonClassName}
-            ></img>
-          </button>
+          {isLoggedIn ? (
+            <button
+              onClick={() => onCardLike(item._id, isLiked)}
+              className="cards__like-wrapper"
+            >
+              <img
+                src={isLiked ? likeButtonActive : likeButton}
+                alt="like button"
+                className="cards__like"
+              />
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <img
           className="cards__image"

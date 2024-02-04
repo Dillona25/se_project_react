@@ -4,18 +4,28 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, cards, onCardLike, isLoggedIn }) {
+function Main({ weatherTemp, onSelectCard, cards, isLoggedIn, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit];
 
   const getWeatherType = () => {
-    if (weatherTemp >= 86) {
-      return "hot";
-    } else if (weatherTemp >= 66 && weatherTemp <= 85) {
-      return "warm";
-    } else if (weatherTemp <= 65) {
-      return "cold";
+    if (currentTemperatureUnit === "F") {
+      if (temp >= 86) {
+        return "hot";
+      } else if (temp >= 66 && temp <= 85) {
+        return "warm";
+      } else if (temp <= 65) {
+        return "cold";
+      }
+    } else if (currentTemperatureUnit === "C") {
+      if (temp >= 86) {
+        return "hot";
+      } else if (temp >= 66 && temp <= 85) {
+        return "warm";
+      } else if (temp <= 65) {
+        return "cold";
+      }
     }
   };
 
@@ -39,8 +49,8 @@ function Main({ weatherTemp, onSelectCard, cards, onCardLike, isLoggedIn }) {
                 key={item._id}
                 item={item}
                 onSelectCard={onSelectCard}
-                onCardLike={onCardLike}
                 isLoggedIn={isLoggedIn}
+                onCardLike={onCardLike}
               />
             );
           })}

@@ -9,6 +9,7 @@ const Profile = ({
   handleEditProfileModal,
   handleLogout,
   onCardLike,
+  isLoggedIn,
 }) => {
   return (
     <div className="profile">
@@ -21,6 +22,7 @@ const Profile = ({
         openModal={openModal}
         onSelectCard={onSelectCard}
         onCardLike={onCardLike}
+        isLoggedIn={isLoggedIn}
       />
     </div>
   );
