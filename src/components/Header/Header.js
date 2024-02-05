@@ -16,6 +16,7 @@ const Header = ({
   handleLoginModal,
   handleRegisterModal,
   isLoggedIn,
+  location,
 }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -25,7 +26,9 @@ const Header = ({
         <Link to="/" className="header__link">
           <img src={headerLogo} alt="Logo" className="header__logo"></img>
         </Link>
-        <p className="header__info_date">{currentDate}, Portland, Oregon</p>
+        <p className="header__info_date">
+          {currentDate}, {location}
+        </p>
       </div>
       <div className="header__info_user">
         <ToggleSwitch />

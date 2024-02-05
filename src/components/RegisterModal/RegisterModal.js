@@ -41,7 +41,11 @@ const RegisterModal = ({
 
   return (
     <ModalWithForm
-      title={"Sign Up"}
+      button={
+        <button className="modal__button" type="submit">
+          Sign up
+        </button>
+      }
       onClose={handleCloseModal}
       buttonText={"Next"}
       buttonTextAlt={"or Log In"}

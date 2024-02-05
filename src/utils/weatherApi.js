@@ -23,3 +23,9 @@ export const parseWeather = (data) => {
   };
   return weatherTemp;
 };
+
+export const parseWeatherCity = (data) => {
+  const city = data.name;
+  console.log(city);
+  return city;
+};

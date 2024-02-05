@@ -20,7 +20,11 @@ const LoginModal = ({ handleCloseModal, handleRegisterModal, onSubmit }) => {
 
   return (
     <ModalWithForm
-      title="log in"
+      button={
+        <button className="modal__button" type="submit">
+          Log in
+        </button>
+      }
       buttonText={"Login"}
       buttonTextAlt={"or Register"}
       onClose={handleCloseModal}

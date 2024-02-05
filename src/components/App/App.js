@@ -27,7 +27,11 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 //* Api imports
-import { getForecastWeather, parseWeather } from "../../utils/weatherApi";
+import {
+  getForecastWeather,
+  parseWeather,
+  parseWeatherCity,
+} from "../../utils/weatherApi";
 import {
   getClothingItem,
   addNewItem,
@@ -42,6 +46,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
+  const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemerpatureUnit] = useState("F");
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -82,7 +87,9 @@ function App() {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeather(data);
+        const location = parseWeatherCity(data);
         setTemp(temperature);
+        setCity(location);
         getClothingItem()
           .then((data) => {
             setCards(data);
@@ -104,21 +111,12 @@ function App() {
   };
 
   //* Call back function for adding a new clothing item
+
   const onAddItem = ({ name, imageUrl, weather }) => {
     addNewItem({ name, imageUrl, weather })
       .then((res) => {
-        setCards([res, ...cards]);
+        setCards([res.data, ...cards]);
         handleCloseModal();
-        getClothingItem()
-          .then((data) => {
-            const items = data.sort(
-              (a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
-            );
-            setCards(items);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
       })
       .catch((err) => {
         console.log(err);
@@ -255,6 +253,7 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <Header
+            location={city}
             handleCreateModal={handleCreateModal}
             handleLoginModal={handleLoginModal}
             handleRegisterModal={handleRegisterModal}

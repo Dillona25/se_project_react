@@ -7,7 +7,11 @@ const SideBar = ({ handleEditProfileModal, handleLogout }) => {
   return (
     <div className="profile__sidebar-wrapper">
       <div className="profile__sidebar">
-        <img src={currentUser?.avatar} className="profile__image"></img>
+        <img
+          src={currentUser?.avatar}
+          alt="Profile Image"
+          className="profile__image"
+        ></img>
         <h1 className="profile__name">{currentUser?.name}</h1>
       </div>
       <button

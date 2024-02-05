@@ -1,22 +1,26 @@
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
 const ConfirmModal = ({ handleCloseModal, handleDeleteCard }) => {
   return (
-    <div className="modal">
-      <div className="modal__container-confirm">
-        <button onClick={handleCloseModal} className="modal__close"></button>
-        <form className="modal__form-confirm">
-          <span className="modal__confirm-text">
-            Are you sure you want to delete this item? This action is
-            irreversible.
-          </span>
-          <button onClick={handleDeleteCard} className="modal__button-delete">
-            Yes, delete item
-          </button>
-          <button onClick={handleCloseModal} className="modal__button-cancel">
-            Cancel
-          </button>
-        </form>
-      </div>
-    </div>
+    <ModalWithForm
+      onSubmit={handleDeleteCard}
+      onClose={handleCloseModal}
+      className="modal__form-confirm"
+    >
+      <span className="modal__confirm-text">
+        Are you sure you want to delete this item? This action is irreversible.
+      </span>
+      <button type="submit" className="modal__button-delete">
+        Yes, delete item
+      </button>
+      <button
+        type="button"
+        onClick={handleCloseModal}
+        className="modal__button-cancel"
+      >
+        Cancel
+      </button>
+    </ModalWithForm>
   );
 };
 

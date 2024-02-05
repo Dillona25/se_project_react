@@ -25,7 +25,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   return (
     <ModalWithForm
-      title="New Garmet"
+      button={
+        <button className="modal__button" type="submit">
+          New garmet
+        </button>
+      }
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}

@@ -28,7 +28,11 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit }) => {
 
   return (
     <ModalWithForm
-      title="Change profile data"
+      button={
+        <button className="modal__button" type="submit">
+          Change profile data
+        </button>
+      }
       buttonText={"Save changes"}
       onClose={handleCloseModal}
       onSubmit={handleSubmit}
