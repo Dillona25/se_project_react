@@ -20,6 +20,7 @@ const LoginModal = ({ handleCloseModal, handleRegisterModal, onSubmit }) => {
 
   return (
     <ModalWithForm
+      title={"Log in"}
       button={
         <button className="modal__button" type="submit">
           Log in
@@ -59,7 +60,7 @@ const LoginModal = ({ handleCloseModal, handleRegisterModal, onSubmit }) => {
         type="button"
         onClick={handleRegisterModal}
       >
-        or Sign In
+        or Sign up
       </button>
     </ModalWithForm>
   );

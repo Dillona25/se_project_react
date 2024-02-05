@@ -41,6 +41,7 @@ const RegisterModal = ({
 
   return (
     <ModalWithForm
+      title={"Sign up"}
       button={
         <button className="modal__button" type="submit">
           Sign up
