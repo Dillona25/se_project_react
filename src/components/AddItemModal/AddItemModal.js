@@ -35,8 +35,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       onSubmit={handleSubmit}
       buttonText={"Add Garmet"}
     >
-      <label className="modal__label">Name</label>
+      <label htmlFor="name-input" className="modal__label">
+        Name
+      </label>
       <input
+        id="name-input"
         className="modal__input"
         type="text"
         name="name"
@@ -47,8 +50,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         required
         placeholder="Name"
       ></input>
-      <label className="modal__label">Image</label>
+      <label htmlFor="image-input" className="modal__label">
+        Image
+      </label>
       <input
+        id="image-input"
         className="modal__input"
         type="link"
         name="image link"
