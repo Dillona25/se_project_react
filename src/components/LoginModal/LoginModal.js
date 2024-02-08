@@ -31,7 +31,9 @@ const LoginModal = ({ handleCloseModal, handleRegisterModal, onSubmit }) => {
       onClose={handleCloseModal}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label">Email</label>
+      <label htmlFor="email" className="modal__label">
+        Email
+      </label>
       <input
         className="modal__input"
         placeholder="Email"
@@ -43,7 +45,9 @@ const LoginModal = ({ handleCloseModal, handleRegisterModal, onSubmit }) => {
         maxLength="30"
         onChange={handleEmailChange}
       ></input>
-      <label className="modal__label">Password</label>
+      <label htmlFor="password" className="modal__label">
+        Password
+      </label>
       <input
         className="modal__input"
         placeholder="Password"
