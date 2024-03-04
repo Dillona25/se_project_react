@@ -38,7 +38,7 @@ const Header = ({
               + Add Clothes
             </button>
             <Link className="header__name_link" to="/profile">
-              <p className="header__name">{currentUser?.name}</p>
+              <p className="header__name">Hello, {currentUser?.name}</p>
             </Link>
             <button className="header__menu"></button>
             <Link className="header__link" to="/profile">

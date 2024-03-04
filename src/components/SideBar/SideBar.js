@@ -18,7 +18,7 @@ const SideBar = ({ handleEditProfileModal, handleLogout }) => {
         className="profile__sidebar-edit"
         onClick={handleEditProfileModal}
       >
-        Edit profile data
+        Edit profile
       </button>
       <button onClick={handleLogout} className="profile__sidebar-logout">
         Logout
