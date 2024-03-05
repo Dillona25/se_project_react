@@ -27,19 +27,16 @@
 
 .weather__image {
   position: absolute;
-  width: 100%;
+  width: 1360px;
   height: 100px;
 }
 
-@media screen and (max-width: 1020px) {
-  .weather__temp {
-    font-size: 20px;
-    margin: 10px 0 10px 16px;
-  }
-}
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 375px) {
   .weather {
+    display: none;
+  }
+
+  .weather__temp {
     display: none;
   }
 }

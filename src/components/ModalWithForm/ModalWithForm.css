@@ -222,9 +222,9 @@
   text-align: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 380px) {
   .modal__container_preview {
-    width: 350px;
+    width: 300px;
   }
 
   .modal__container {
@@ -233,6 +233,19 @@
 
   .modal__image {
     width: 300px;
+  }
+
+  .modal__title_preview {
+    font-size: 18px;
+  }
+
+  .modal__description_preview {
+    font-size: 18px;
+  }
+
+  .modal__delete {
+    font-size: 18px;
+    margin-right: 16px;
   }
 
   .modal__input {

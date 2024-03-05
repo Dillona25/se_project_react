@@ -10,7 +10,7 @@ Its simple. What to wear is a project that takes a users loaction and the weathe
 
 # The live site
 
-- https://dillona25.github.io/WhatToWear/#/
+- https://www.dillonarnold.twilightparadox.com/
 
 # The back-end code
 

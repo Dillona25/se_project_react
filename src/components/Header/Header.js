@@ -40,7 +40,9 @@ const Header = ({
             <Link className="header__name_link" to="/profile">
               <p className="header__name">Hello, {currentUser?.name}</p>
             </Link>
-            <button className="header__menu"></button>
+            <div className="header__menu_container">
+              <button className="header__menu"></button>
+            </div>
             <Link className="header__link" to="/profile">
               <img
                 className="header__avatar"

@@ -14,15 +14,10 @@
   line-height: 20px;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 375px) {
   .footer {
-    width: 345px;
-    margin: auto;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .footer {
-    margin: auto;
+    justify-content: center;
+    gap: 20px;
+    margin: 0;
   }
 }
