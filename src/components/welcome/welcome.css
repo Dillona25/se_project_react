@@ -1,0 +1,37 @@
+.welcome {
+  height: 100vh;
+  display: flex;
+  gap: 150px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 1300px;
+}
+
+.welcome__text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.welcome__title {
+  margin: 0px;
+  font-weight: bold;
+}
+
+.welcome__subtitle {
+  margin: 0px;
+  letter-spacing: 1px;
+  max-width: 700px;
+}
+
+.welcome__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  background-color: rgb(190, 190, 190);
+}

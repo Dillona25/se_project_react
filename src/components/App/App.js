@@ -40,6 +40,7 @@ import {
 } from "../../utils/api";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
+import { Welcome } from "../welcome/welcome";
 
 function App() {
   //* States
@@ -252,41 +253,48 @@ function App() {
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
-          <Header
-            location={city}
-            handleCreateModal={handleCreateModal}
-            handleLoginModal={handleLoginModal}
-            handleRegisterModal={handleRegisterModal}
-            onSelectCard={handleSelectedCard}
-            isLoggedIn={isLoggedIn}
-          >
-            <ToggleSwitch />
-          </Header>
-          <Route exact path="/">
-            <Main
-              weatherTemp={temp}
-              cards={cards}
-              onSelectCard={handleSelectedCard}
-              isLoggedIn={isLoggedIn}
-              onCardLike={handleCardLike}
-            />
-          </Route>
+          <Route path="/welcome" component={() => <Welcome />} />
           <ProtectedRoute
-            path="/profile"
+            exact
+            path="/"
             isLoggedIn={isLoggedIn}
             component={() => (
-              <Profile
-                onSelectCard={handleSelectedCard}
-                openModal={handleCreateModal}
-                handleEditProfileModal={handleEditProfileModal}
-                handleLogout={handleLogout}
-                cards={cards}
-                isLoggedIn={isLoggedIn}
-                onCardLike={handleCardLike}
-              />
+              <>
+                <Header
+                  location={city}
+                  handleCreateModal={handleCreateModal}
+                  handleLoginModal={handleLoginModal}
+                  handleRegisterModal={handleRegisterModal}
+                  onSelectCard={handleSelectedCard}
+                  isLoggedIn={isLoggedIn}
+                >
+                  <ToggleSwitch />
+                </Header>
+                <Main
+                  weatherTemp={temp}
+                  cards={cards}
+                  onSelectCard={handleSelectedCard}
+                  isLoggedIn={isLoggedIn}
+                  onCardLike={handleCardLike}
+                />
+                <Route
+                  path="/profile"
+                  component={() => (
+                    <Profile
+                      onSelectCard={handleSelectedCard}
+                      openModal={handleCreateModal}
+                      handleEditProfileModal={handleEditProfileModal}
+                      handleLogout={handleLogout}
+                      cards={cards}
+                      isLoggedIn={isLoggedIn}
+                      onCardLike={handleCardLike}
+                    />
+                  )}
+                />
+                <Footer />
+              </>
             )}
           ></ProtectedRoute>
-          <Footer />
           {activeModal === "profileModal" && (
             <EditProfileModal
               handleCloseModal={handleCloseModal}
